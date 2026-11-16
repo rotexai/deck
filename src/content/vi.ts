@@ -15,6 +15,13 @@ export const vi: Content = {
     kicker: 'Tóm tắt cho nhà đầu tư · Vòng pre-seed · 2026',
     headline: 'Phần mềm *vừa vặn* với từng cửa hàng.',
     body: 'Hãy mô tả cửa hàng bằng lời thường. RotexAI xây ứng dụng của cửa hàng và thay đổi nó khi cửa hàng thay đổi.',
+    scan: {
+      label: 'Quét để truy cập',
+      links: [
+        { href: 'https://www.rotexai.com', title: 'Sản phẩm', cta: 'Dùng thử sản phẩm', text: 'rotexai.com' },
+        { href: 'https://investor.rotexai.com', title: 'Nhà đầu tư', cta: 'Dành cho nhà đầu tư', text: 'investor.rotexai.com' },
+      ],
+    },
     source: 'investor.rotexai.com',
   },
 

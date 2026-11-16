@@ -1,5 +1,7 @@
 import type { CSSProperties } from 'react'
 import { useContent } from '../content'
+import { Qr } from '../deck/Qr'
+import { SiteIcon, type Site } from '../deck/SiteIcon'
 import { Headline } from '../deck/Text'
 
 /** The brand mark (brand/logo/mark/rotexai-mark.svg) with its two links split so they can draw (R16). */
@@ -15,6 +17,9 @@ function Mark() {
     </svg>
   )
 }
+
+/** The scan links in content order: the product site, then the investor page. */
+const SITES: readonly Site[] = ['product', 'investor']
 
 export function TitleSlide() {
   const c = useContent().title
@@ -34,6 +39,22 @@ export function TitleSlide() {
           {c.body}
         </p>
       </div>
+      <aside className="title-scan">
+        <p className="kicker rise" style={{ '--d': '750ms' } as CSSProperties}>
+          {c.scan.label}
+        </p>
+        {c.scan.links.map((l, i) => (
+          <a key={l.href} className={`qr-card qr-card-${SITES[i]} rise`} href={l.href} target="_blank" rel="noopener" style={{ '--d': `${850 + i * 120}ms` } as CSSProperties}>
+            <span className="qr-band">
+              <SiteIcon site={SITES[i]} size={20} />
+              {l.title}
+            </span>
+            <Qr text={l.href} size={180} site={SITES[i]} label={`${l.title}: ${l.text}`} />
+            <span className="qr-cta">{l.cta}</span>
+            <span className="qr-url">{l.text}</span>
+          </a>
+        ))}
+      </aside>
     </div>
   )
 }

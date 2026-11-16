@@ -19,6 +19,15 @@ export const en = {
     kicker: 'Investor brief · Pre-seed · 2026',
     headline: 'Software that *fits* each shop.',
     body: 'Describe the shop in plain words. RotexAI builds its app, and changes it when the shop changes.',
+    // QR codes on the right of the title slide, product first then investors: `title` is the coloured band,
+    // `cta` the line under the code, `text` the address.
+    scan: {
+      label: 'Scan to visit',
+      links: [
+        { href: 'https://www.rotexai.com', title: 'Product', cta: 'Try the product', text: 'rotexai.com' },
+        { href: 'https://investor.rotexai.com', title: 'Investors', cta: 'For investors', text: 'investor.rotexai.com' },
+      ],
+    },
     source: 'investor.rotexai.com',
   },
 

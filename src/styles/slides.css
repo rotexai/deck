@@ -10,6 +10,39 @@
 .mark .mk-link { stroke: var(--s-fg); stroke-dasharray: 1; stroke-dashoffset: 0; animation: draw-link 0.6s var(--out-cubic) var(--d) both; }
 @keyframes draw-link { from { stroke-dashoffset: 1; } }
 .title-main { flex-grow: 1; display: flex; flex-direction: column; justify-content: center; gap: 40px; max-width: 1400px; }
+/* QR codes in a column on the right, clear of the headline in both languages (design canvas, option D).
+   The two cards differ in colour, icon, dot shape and words, so they read apart without colour vision. */
+.title-scan {
+  position: absolute; top: 132px; bottom: 132px; right: 128px; width: 248px;
+  display: flex; flex-direction: column; justify-content: center; align-items: stretch; gap: 22px;
+}
+.title-scan .kicker { text-align: center; font-size: 18px; white-space: nowrap; }
+.qr-card {
+  display: flex; flex-direction: column; align-items: center; overflow: hidden;
+  background: var(--receipt); box-shadow: var(--shadow-receipt); border-radius: 14px; text-decoration: none;
+}
+.qr-band {
+  align-self: stretch; display: flex; align-items: center; gap: 10px; padding: 11px 16px;
+  font: 600 15px/1 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase;
+}
+.qr-card-product .qr-band { background: var(--blue); color: var(--receipt); }
+.qr-card-product .qr-band .site-icon * { stroke: var(--receipt); }
+.qr-card-investor .qr-band { background: var(--orange); color: var(--ink-brand); }
+.qr-card-investor .qr-band .site-icon * { stroke: var(--ink-brand); }
+.qr-card .qr { margin: 14px 16px 4px; }
+.qr-cta { padding: 6px 16px 0; font: 700 20px/1.25 var(--font-display); color: var(--ink-brand); text-align: center; }
+.qr-url { padding: 2px 16px 16px; font: 500 16px/1.3 var(--font-body); }
+.qr-card-product .qr-url { color: var(--blue); }
+.qr-card-investor .qr-url { color: var(--warn-text); }
+/* Branded QR (Qr.tsx). Product: blue dots and corners. Investor: ink square dots, orange corners. */
+.qr .q-ring { fill: none; stroke: var(--ink-brand); }
+.qr .q-icon-bg { fill: var(--receipt); }
+.qr .si-main { stroke: var(--ink-brand); }
+.qr-product .q-dot, .qr-product .q-pupil { fill: var(--blue); }
+.qr-product .si-accent { stroke: var(--blue); }
+.qr-investor .q-dot { fill: var(--ink-brand); }
+.qr-investor .q-pupil { fill: var(--orange); }
+.qr-investor .si-accent { stroke: var(--orange); }
 
 /* 02 The shop (R17) */
 .shop { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 96px; padding: 120px 128px 140px; }
