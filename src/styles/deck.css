@@ -1,0 +1,150 @@
+/* Deck engine and shared type. Colours only through tokens.css (R9).
+   Base styles are the FINAL state; keyframes run from the start state with fill-mode both, so reduced motion
+   and print (animation: none) land on the finished slide (R5, R6). Step elements use transitions so a step
+   played backwards runs in reverse (R3). No viewport-width media queries: the slide is a fixed 1920×1080. */
+
+/* Palettes. Each slide (and the letterbox) takes its palette from its theme class (R11). */
+.paper {
+  --s-bg: var(--paper);
+  --s-fg: var(--ink-brand);
+  --s-body: var(--paper-text);
+  --s-muted: var(--paper-muted);
+  --s-accent: var(--blue);
+  --s-line: var(--ink-a14);
+  --s-glass: var(--ink-a04);
+  --s-track: var(--ink-a08);
+  --s-fill: var(--ink-brand);
+  --s-dash: var(--blue-a50);
+}
+.ink {
+  --s-bg: var(--ink);
+  --s-fg: var(--fg);
+  --s-body: var(--fg-soft);
+  --s-muted: var(--muted);
+  --s-accent: var(--violet-text);
+  --s-line: var(--line);
+  --s-glass: var(--glass);
+  --s-track: var(--white-a08);
+  --s-fill: var(--violet-text);
+  --s-dash: var(--violet-a60);
+  --s-cyan: var(--cyan);
+  --s-orange-text: var(--orange-text);
+  --s-green: var(--diff-green);
+  --s-node: var(--cyan-a60);
+  --s-btn-bg: var(--fg);
+  --s-btn-fg: var(--ink-brand);
+  --s-seg-last: var(--white-a22);
+}
+/* Dark slides print on paper with brand ink text (R5). */
+.print .ink {
+  --s-bg: var(--paper);
+  --s-fg: var(--ink-brand);
+  --s-body: var(--paper-text);
+  --s-muted: var(--paper-muted);
+  --s-accent: var(--violet);
+  --s-line: var(--ink-a14);
+  --s-glass: var(--ink-a04);
+  --s-track: var(--ink-a08);
+  --s-fill: var(--ink-brand);
+  --s-dash: var(--blue-a50);
+  --s-cyan: var(--blue);
+  --s-orange-text: var(--warn-text);
+  --s-green: var(--diff-green-print);
+  --s-node: var(--blue-a50);
+  --s-btn-bg: var(--ink-brand);
+  --s-btn-fg: var(--paper);
+  --s-seg-last: var(--ink-a22);
+}
+
+* { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+html, body, #root { margin: 0; height: 100%; }
+body { background: var(--ink); color: var(--fg); font-family: var(--font-body); -webkit-font-smoothing: antialiased; }
+p, h1, h2, blockquote, figure, ol { margin: 0; }
+
+/* Fit (R2): a fixed 1920×1080 stage, zoomed (never transform: scale) and centred; the letterbox is the slide's colour. */
+.viewport {
+  position: fixed; inset: 0; display: grid; place-items: center; overflow: hidden;
+  background: var(--s-bg); transition: background-color 900ms var(--out-cubic);
+}
+.stage { position: relative; width: 1920px; height: 1080px; flex: none; }
+.slide {
+  position: absolute; inset: 0; overflow: hidden;
+  background: var(--s-bg); color: var(--s-fg); font-family: var(--font-body);
+}
+
+/* Slide change (R12): the outgoing slide fades out; the incoming one rises 8px with a 4px blur clearing. */
+.slide[data-state='in'] { animation: slide-in var(--t-slide) var(--out-quint) both; }
+.slide[data-state='out'] { animation: slide-out var(--t-slide) var(--out-quint) both; pointer-events: none; }
+@keyframes slide-in { from { opacity: 0; transform: translateY(8px); filter: blur(4px); } }
+@keyframes slide-out { to { opacity: 0; } }
+
+/* Layout and type (R10) */
+.sl-pad { position: absolute; inset: 0; display: flex; flex-direction: column; gap: 64px; padding: 112px 128px 140px; }
+.head { position: relative; display: flex; flex-direction: column; gap: 28px; }
+.kicker { font: 400 22px/1.3 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--s-muted); }
+.h1 { font: 800 148px/1 var(--font-display); letter-spacing: -0.035em; }
+.h2 { font: 800 80px/1.05 var(--font-display); letter-spacing: -0.03em; max-width: 1600px; }
+.h2.x84 { font-size: 84px; }
+.h2.x88 { font-size: 88px; }
+.lead { font-size: 38px; line-height: 1.4; color: var(--s-body); max-width: 1180px; }
+.accent { color: var(--s-accent); }
+.card-title { font: 700 40px/1.15 var(--font-display); }
+.card-body { font-size: 24px; line-height: 1.45; color: var(--s-body); }
+.panel-label { font: 400 20px/1.3 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--s-muted); }
+.glass { background: var(--s-glass); border: 1px solid var(--s-line); border-radius: 20px; }
+.grow { flex-grow: 1; }
+
+/* Headline words blur in 60 ms apart (R13) */
+.w { display: inline-block; animation: word-in 0.7s var(--out-quint) var(--d, 0ms) both; }
+@keyframes word-in { from { opacity: 0; filter: blur(8px); transform: translateY(8px); } }
+.rise { animation: rise-in 0.7s var(--out-cubic) var(--d, 0ms) both; }
+@keyframes rise-in { from { opacity: 0; transform: translateY(10px); filter: blur(4px); } }
+
+/* Steps (R14): an element rises in over 400 ms when its step is reached; [data-dim] marks an earlier focus. */
+.st {
+  transition:
+    opacity var(--t-step) var(--out-cubic) var(--d, 0ms),
+    transform var(--t-step) var(--out-cubic) var(--d, 0ms),
+    filter var(--t-step) var(--out-cubic) var(--d, 0ms);
+}
+.st:not([data-on]) { opacity: 0; transform: translateY(16px); }
+.st[data-dim] { opacity: 0.4; }
+
+/* Placeholder slot (R30): a fact still to be filled in, deliberately obvious. */
+.slot {
+  font-family: var(--font-mono); font-size: 0.82em; font-weight: 400; letter-spacing: 0; text-transform: none;
+  color: var(--s-fg); border: 2px dashed var(--s-dash); border-radius: 4px; padding: 0.05em 0.4em;
+}
+.slot.block { display: inline-block; font-family: var(--font-body); font-size: inherit; border-radius: 0; padding: 8px 14px; }
+
+/* Chrome (R7) */
+.chrome {
+  position: absolute; left: 128px; right: 128px; bottom: 48px; z-index: 3;
+  display: flex; justify-content: space-between; gap: 48px;
+  font: 400 18px/1.4 var(--font-mono); color: var(--s-muted);
+}
+.chrome .num { flex: none; }
+.progress { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 6px; background: var(--s-track); }
+.progress i { display: block; height: 100%; background: var(--s-fill); }
+
+/* Reduced motion (R6): end states at once, nothing moves. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+
+/* Print handout (R5): one slide per A4 landscape page, on paper. */
+@page { size: A4 landscape; margin: 0; }
+.print *, .print *::before, .print *::after { animation: none !important; transition: none !important; }
+.print .page {
+  width: 297mm; height: 210mm; display: flex; align-items: center; justify-content: center;
+  overflow: hidden; background: var(--paper); break-after: page; page-break-after: always;
+}
+.print .page:last-child { break-after: auto; page-break-after: auto; }
+@media screen {
+  body:has(.print) { background: var(--ink-a22); }
+  .print { display: grid; justify-content: center; gap: 24px; padding: 24px 0; }
+  .print .page { box-shadow: var(--shadow-ink); }
+}
+@media print {
+  html, body { background: var(--paper); }
+}

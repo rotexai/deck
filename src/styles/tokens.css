@@ -1,0 +1,57 @@
+/* The only file in src/ that may hold colour literals (R9). scripts/check-tokens.mjs enforces it.
+   Brand tokens come from web/investor src/investor.css:1-40; the paper set is the deck's own (spec 261116). */
+:root {
+  /* Investor page */
+  --ink: #0a1119;
+  --ink-brand: #0e1a24;
+  --fg: #f2f5f8;
+  --fg-soft: #c3ccd6;      /* card body text on ink (design canvas) */
+  --muted: #9aa6b3;
+  --line: rgba(255, 255, 255, 0.09);
+  --glass: rgba(255, 255, 255, 0.035);
+  --blue: #2445e8;
+  --violet: #5b43e8;
+  --violet-text: #9d8cff;
+  --cyan: #4cc9f0;
+  --orange: #f26a1b;
+  --orange-text: #f7924f;  /* orange that reads on ink */
+
+  /* Paper set */
+  --paper: #f4efe6;
+  --receipt: #ffffff;
+  --paper-text: #3d4752;
+  --paper-muted: #555f6b;
+  --warn-text: #c2410c;
+  --diff-green: #6ee7a8;
+  --diff-green-print: #166534;
+
+  /* Alpha mixes, kept here so components hold no colour literals */
+  --ink-a06: rgba(14, 26, 36, 0.06);
+  --ink-a08: rgba(14, 26, 36, 0.08);
+  --ink-a14: rgba(14, 26, 36, 0.14);
+  --ink-a22: rgba(14, 26, 36, 0.22);
+  --ink-a25: rgba(14, 26, 36, 0.25);
+  --ink-a28: rgba(14, 26, 36, 0.28);
+  --ink-a04: rgba(14, 26, 36, 0.04);
+  --white-a08: rgba(255, 255, 255, 0.08);
+  --white-a14: rgba(255, 255, 255, 0.14);
+  --white-a22: rgba(255, 255, 255, 0.22);
+  --cyan-a60: rgba(76, 201, 240, 0.6);
+  --violet-a60: rgba(157, 140, 255, 0.6);
+  --blue-a50: rgba(36, 69, 232, 0.5);
+  --glow: rgba(91, 67, 232, 0.35);
+  --glow-0: rgba(91, 67, 232, 0);
+  --shadow-receipt: 0 1px 0 rgba(14, 26, 36, 0.06), 0 24px 48px -24px rgba(14, 26, 36, 0.25);
+  --shadow-ink: 0 30px 60px -30px rgba(0, 0, 0, 0.6);
+
+  /* Type */
+  --font-display: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* Motion */
+  --out-cubic: cubic-bezier(0.33, 1, 0.68, 1);
+  --out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+  --t-slide: 500ms;
+  --t-step: 400ms;
+}
