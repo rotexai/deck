@@ -3,7 +3,7 @@ import type { Content } from './types'
 // Vietnamese deck copy. Same shape as en.ts; translated from it.
 export const vi: Content = {
   deck: {
-    title: 'Bộ thuyết trình RotexAI',
+    title: 'Bộ thuyết trình RotexAI · Phần mềm vừa vặn với từng cửa hàng',
     of: '/',
     locale: 'vi-VN',
     slideLabel: 'Trang {n} / {total}',

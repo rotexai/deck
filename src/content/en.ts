@@ -5,7 +5,7 @@
 
 export const en = {
   deck: {
-    title: 'RotexAI pitch deck',
+    title: 'RotexAI pitch deck · Software that fits each shop',
     of: '/',
     // Number format for figures, and the slide label read by screen readers ({n} and {total} are filled in).
     locale: 'en-US',
