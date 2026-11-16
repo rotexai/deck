@@ -1,9 +1,9 @@
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { Headline } from '../deck/Text'
 
 /** R27: the founder; the portrait fades in, then the line. */
 export function TeamSlide() {
-  const c = en.team
+  const c = useContent().team
   return (
     <div className="sl-pad team">
       <img className="portrait" src={c.portrait.src} alt={c.portrait.alt} />

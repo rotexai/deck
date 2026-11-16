@@ -1,12 +1,12 @@
 import type { CSSProperties } from 'react'
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { st } from '../deck/step'
 import { Headline, Txt } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
 
 /** R24: a 2×2 by category; competitors drop in, RotexAI lands last in its quadrant (step 2). Names stay slots (Q3). */
 export function CompetitionSlide({ step }: SlideProps) {
-  const c = en.competition
+  const c = useContent().competition
   return (
     <div className="sl-pad competition">
       <div className="head">

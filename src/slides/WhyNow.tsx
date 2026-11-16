@@ -1,11 +1,11 @@
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { st } from '../deck/step'
 import { Headline } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
 
 /** R23: one card per step; each date chip settles from 1.04 scale. */
 export function WhyNowSlide({ step }: SlideProps) {
-  const c = en.whyNow
+  const c = useContent().whyNow
   return (
     <div className="sl-pad why">
       <div className="head">

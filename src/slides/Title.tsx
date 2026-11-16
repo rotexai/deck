@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { Headline } from '../deck/Text'
 
 /** The brand mark (brand/logo/mark/rotexai-mark.svg) with its two links split so they can draw (R16). */
@@ -17,7 +17,7 @@ function Mark() {
 }
 
 export function TitleSlide() {
-  const c = en.title
+  const c = useContent().title
   return (
     <div className="sl-pad title">
       <div className="brand">

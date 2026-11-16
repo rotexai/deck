@@ -1,10 +1,10 @@
 import type { CSSProperties } from 'react'
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { Headline, Txt } from '../deck/Text'
 
 /** R26: live in production; a timeline line draws left to right and lights each milestone. Numbers are slots. */
 export function TractionSlide() {
-  const c = en.traction
+  const c = useContent().traction
   return (
     <div className="sl-pad traction">
       <div className="head">

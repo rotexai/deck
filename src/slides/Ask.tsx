@@ -1,4 +1,5 @@
 import type { CSSProperties } from 'react'
+import { useContent } from '../content'
 import { en } from '../content/en'
 import { useCountUp } from '../deck/motion'
 import { st } from '../deck/step'
@@ -9,7 +10,7 @@ const SUM = en.ask.funds.reduce((a, f) => a + f.amount, 0)
 
 /** R28: four steps fill the bar one use of funds each, then the milestones; the total counts to 150M on the last. */
 export function AskSlide({ step, still }: SlideProps) {
-  const c = en.ask
+  const c = useContent().ask
   const funds = c.funds
   const last = funds.length - 1
   const total = useCountUp(
@@ -39,7 +40,10 @@ export function AskSlide({ step, still }: SlideProps) {
         <div className="fund-labels">
           {funds.map((f, i) => (
             <div key={f.label} className="fund-label st" {...st(i, step)} style={{ width: `${(f.amount / SUM) * 100}%` }}>
-              <span className="amt">{f.amount}M</span>
+              <span className="amt">
+                {f.amount}
+                {c.amountUnit}
+              </span>
               <span className="use">{f.label}</span>
             </div>
           ))}

@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { st } from '../deck/step'
 import { Headline } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
@@ -8,7 +8,7 @@ const PITCH = 52 // row height 34 + gap 18
 
 /** R18: bars grow; step 1 moves the fit bar from 9th (literature, shown last) to 3rd (SMEs) and dims the rest; step 2 the cards. */
 export function ProblemSlide({ step }: SlideProps) {
-  const c = en.problem
+  const c = useContent().problem
   const bars = c.bars
   const fitAt = bars.findIndex((b) => 'fit' in b)
   const order = step >= 1 ? bars.map((_, i) => i) : [...bars.map((_, i) => i).filter((i) => i !== fitAt), fitAt]

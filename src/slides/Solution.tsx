@@ -1,5 +1,5 @@
 import { Fragment, type CSSProperties } from 'react'
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { useTyped } from '../deck/motion'
 import { st } from '../deck/step'
 import { Headline } from '../deck/Text'
@@ -7,7 +7,7 @@ import type { SlideProps } from '../deck/types'
 
 /** R20: the switch (paper fades to ink over 900 ms, the glow rises), then: the prompt types, the workflow draws, Approve v3 stamps. */
 export function SolutionSlide({ step, still, enter }: SlideProps) {
-  const c = en.solution
+  const c = useContent().solution
   const switching = enter === 'next' && !still
   const typed = useTyped(c.says.text, still, step > 0, 24, switching ? 900 : 300)
   return (

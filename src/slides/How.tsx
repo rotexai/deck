@@ -1,4 +1,4 @@
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { Headline } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
 
@@ -23,7 +23,7 @@ function Box({ title, body, hot = false }: { title: string; body: string; hot?: 
 
 /** R22: every action is a workflow you can inspect; small dots flow along the arrows. */
 export function HowSlide({ still }: SlideProps) {
-  const c = en.how
+  const c = useContent().how
   return (
     <div className="sl-pad how">
       <div className="head">

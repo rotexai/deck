@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
+import { useContent } from '../content'
 import { SLIDES } from '../slides'
+import { LangSwitch } from './Lang'
 import { useReducedMotion } from './motion'
 import { indexFromHash, KEYS_NEXT, KEYS_PREV, next, pad2, prev, type Pos } from './nav'
 import { Txt } from './Text'
@@ -40,18 +42,19 @@ interface FrameProps {
 /** One slide plus its chrome (R7): source line bottom left, NN / total bottom right, progress bar. */
 function Frame({ def, n, total, step, active, still, print, enter, state }: FrameProps) {
   const C = def.Component
+  const copy = useContent()
   return (
     <section
       className={`slide ${def.theme} sl-${def.id}`}
       data-state={state}
       data-id={def.id}
       aria-hidden={state === 'out' ? true : undefined}
-      aria-label={`Slide ${n} of ${total}`}
+      aria-label={copy.deck.slideLabel.replace('{n}', String(n)).replace('{total}', String(total))}
     >
       <C step={step} active={active} still={still} print={print} enter={enter} />
       <footer className="chrome">
         <span className="src">
-          <Txt text={def.source} />
+          <Txt text={copy[def.copy].source} />
         </span>
         <span className="num">
           {pad2(n)} / {total}
@@ -94,6 +97,8 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
       })
     const onKey = (e: KeyboardEvent) => {
       if (e.altKey || e.ctrlKey || e.metaKey) return
+      // Space or Enter on a focused button presses that button, not the deck.
+      if ((e.key === ' ' || e.key === 'Enter') && e.target instanceof HTMLButtonElement) return
       if (KEYS_NEXT.has(e.key)) go((p) => next(p, steps), null)
       else if (KEYS_PREV.has(e.key)) go((p) => prev(p, steps), null)
       else if (e.key === 'Home') go(() => ({ index: 0, step: 0 }), 'jump')
@@ -157,6 +162,7 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
           enter={view.enter}
           state="in"
         />
+        <LangSwitch />
       </div>
     </main>
   )

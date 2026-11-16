@@ -127,6 +127,28 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 .progress { position: absolute; left: 0; right: 0; bottom: 0; z-index: 3; height: 6px; background: var(--s-track); }
 .progress i { display: block; height: 100%; background: var(--s-fill); }
 
+/* Language switch: top right, level with the chrome. The active language is in the slide's ink. */
+.lang-switch {
+  position: absolute; top: 48px; right: 128px; z-index: 4;
+  display: flex; gap: 4px; padding: 6px; cursor: pointer;
+  font: 500 18px/1 var(--font-mono); letter-spacing: 0.14em;
+  color: var(--s-muted); background: var(--s-glass); border: 1px solid var(--s-line); border-radius: 999px;
+  transition: border-color 200ms var(--out-cubic), color 200ms var(--out-cubic);
+}
+.lang-switch span { padding: 10px 16px 10px 18px; border-radius: 999px; transition: background-color 300ms var(--out-cubic), color 300ms var(--out-cubic); }
+.lang-switch span[data-on] { color: var(--s-bg); background: var(--s-fg); }
+.lang-switch:hover { border-color: var(--s-accent); color: var(--s-fg); }
+.lang-switch:focus-visible { outline: 3px solid var(--s-accent); outline-offset: 4px; }
+
+/* The wave a language switch sends across the screen: a ring growing from the button (Lang.tsx animates it). */
+.lang-wave { position: absolute; inset: 0; z-index: 5; overflow: hidden; pointer-events: none; }
+.lang-wave i { position: absolute; border-radius: 50%; width: 0; height: 0; }
+.lang-wave .front { box-shadow: inset 0 0 0 4px var(--s-accent), inset 0 0 64px 8px var(--s-dash), inset 0 0 240px var(--s-dash); }
+.lang-wave .ripple { box-shadow: inset 0 0 0 2px var(--s-dash), inset 0 0 120px var(--s-glass); }
+/* The new language is revealed by a clip-path circle on the new snapshot; the old one stays put beneath it. */
+::view-transition-old(root),
+::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
 /* Reduced motion (R6): end states at once, nothing moves. */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }

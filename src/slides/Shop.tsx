@@ -1,4 +1,4 @@
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { st } from '../deck/step'
 import { Headline } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
@@ -7,7 +7,7 @@ export const SHOP_STEPS = 6
 
 /** R17: the receipt prints one line per step; the clock ticks from 18:00 to 21:30 as it prints. */
 export function ShopSlide({ step }: SlideProps) {
-  const c = en.shop
+  const c = useContent().shop
   const r = c.receipt
   const last = SHOP_STEPS - 1
   return (

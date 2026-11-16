@@ -1,5 +1,6 @@
 import { act, fireEvent, render } from '@testing-library/react'
 import { describe, expect, it, vi } from 'vitest'
+import { en } from '../src/content/en'
 import { Deck } from '../src/deck/Deck'
 import { SLIDES } from '../src/slides'
 import { media } from './setup'
@@ -109,7 +110,7 @@ describe('R7 chrome', () => {
     const { container } = render(<Deck />)
     const slide = container.querySelector('.slide[data-state="in"]') as HTMLElement
     expect(slide.querySelector('.num')?.textContent).toBe('05 / 13')
-    expect(slide.querySelector('.src')?.textContent).toBe(SLIDES[4].source)
+    expect(slide.querySelector('.src')?.textContent).toBe(en[SLIDES[4].copy].source)
     expect((slide.querySelector('.progress i') as HTMLElement).style.width).toBe(`${(5 / 13) * 100}%`)
   })
 

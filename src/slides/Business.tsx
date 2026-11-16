@@ -1,10 +1,10 @@
 import type { CSSProperties } from 'react'
-import { en } from '../content/en'
+import { useContent } from '../content'
 import { Headline, Txt } from '../deck/Text'
 
 /** R25: the model in placeholder slots until prices are set; cards slide in. */
 export function BusinessSlide() {
-  const c = en.business
+  const c = useContent().business
   return (
     <div className="sl-pad business">
       <div className="head">

@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { en } from '../src/content/en'
+import { vi } from '../src/content/vi'
 import { PrintDeck } from '../src/deck/Deck'
 import { SLIDES } from '../src/slides'
 
@@ -15,7 +16,10 @@ const SLOT = /\[[^\]]+\]/g
 describe('R29 sources', () => {
   it('every slide names a source', () => {
     expect(SLIDES).toHaveLength(13)
-    for (const s of SLIDES) expect(s.source.trim(), s.id).not.toBe('')
+    for (const s of SLIDES) {
+      expect(en[s.copy].source.trim(), s.id).not.toBe('')
+      expect(vi[s.copy].source.trim(), s.id).not.toBe('')
+    }
   })
 })
 

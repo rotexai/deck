@@ -25,7 +25,8 @@ export function Headline({ text, as: Tag = 'h2', className, start = 0 }: { text:
   return (
     <Tag className={className}>
       {words.map((w, i) => (
-        <span key={i}>
+        // Keyed by the text, so a language switch replays the word cascade instead of patching words in place.
+        <span key={`${text}:${i}`}>
           {i > 0 && ' '}
           <span className="w" style={{ '--d': `${start + i * 60}ms` } as CSSProperties}>
             {w.map((p, j) => (p.em ? <span key={j} className="accent">{p.text}</span> : p.text))}

@@ -1,4 +1,5 @@
 import type { FC } from 'react'
+import type { Content } from '../content/types'
 
 export type Theme = 'paper' | 'ink'
 /** How the slide was entered: by stepping forward, stepping back, or a jump (hash, Home, End, load). */
@@ -20,6 +21,7 @@ export interface SlideDef {
   id: string
   theme: Theme
   steps: number
-  source: string
+  /** The copy block whose `source` fills the slide's source line (R29). */
+  copy: Exclude<keyof Content, 'deck'>
   Component: FC<SlideProps>
 }

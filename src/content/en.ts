@@ -1,10 +1,18 @@
-// All deck copy (R8), keyed by slide. A Vietnamese file can mirror this shape without touching components.
+// All deck copy (R8), keyed by slide. vi.ts mirrors this shape (type Content in types.ts).
 // Conventions: *phrase* in a headline is the key phrase (blue on paper, violet on ink, R10);
 // [text] is a placeholder slot for a fact not supplied yet (R30) and always renders as a dashed slot.
 // Every slide names its source on the source line (R29). Numbers match wiki "261116 - market research".
 
 export const en = {
-  deck: { title: 'RotexAI pitch deck', of: '/' },
+  deck: {
+    title: 'RotexAI pitch deck',
+    of: '/',
+    // Number format for figures, and the slide label read by screen readers ({n} and {total} are filled in).
+    locale: 'en-US',
+    slideLabel: 'Slide {n} of {total}',
+    // The language button (top right) names the language it switches to.
+    switchTo: 'Switch to Vietnamese',
+  },
 
   title: {
     wordmark: { a: 'Rotex', b: 'AI' },
@@ -104,7 +112,7 @@ export const en = {
     kicker: 'Demo',
     headline: 'From plain words to a *working app*.',
     label: 'Simulation: the RotexAI portal rebuilt from its source code, not a screen recording',
-    video: { src: '/media/walkthrough.mp4', poster: '/media/walkthrough.jpg', captions: '/media/walkthrough.en.vtt' },
+    video: { src: '/media/walkthrough.mp4', poster: '/media/walkthrough.jpg', captions: '/media/walkthrough.en.vtt', captionsLabel: 'English' },
     chaptersTitle: 'In the walkthrough',
     chapters: [
       { at: '0:08', text: 'Start a project' },
@@ -225,6 +233,8 @@ export const en = {
     barLabel: 'Use of funds: founder runway 60M, first customers 30M, infrastructure 30M, reserve 30M VND',
     totalLabel: 'Total',
     unit: 'M VND',
+    // Unit after each use-of-funds amount.
+    amountUnit: 'M',
     funds: [
       { amount: 60, label: 'Founder runway, 10M a month' },
       { amount: 30, label: 'First customers' },
@@ -240,4 +250,3 @@ export const en = {
   },
 } as const
 
-export type Content = typeof en
