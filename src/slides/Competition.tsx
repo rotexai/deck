@@ -4,7 +4,7 @@ import { st } from '../deck/step'
 import { Headline, Txt } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
 
-/** R24: a 2×2 by category; competitors drop in, RotexAI lands last in its quadrant (step 2). Names stay slots (Q3). */
+/** R24: a 2×2 by category (wiki Pillar 7 map); competitors drop in, RotexAI lands last in its quadrant (step 2). */
 export function CompetitionSlide({ step }: SlideProps) {
   const c = useContent().competition
   return (
@@ -34,6 +34,7 @@ export function CompetitionSlide({ step }: SlideProps) {
           <p className="card-body">{c.us.note}</p>
         </div>
       </div>
+      <p className="aside">{c.aside}</p>
     </div>
   )
 }

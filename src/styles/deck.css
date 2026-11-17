@@ -1,7 +1,8 @@
 /* Deck engine and shared type. Colours only through tokens.css (R9).
    Base styles are the FINAL state; keyframes run from the start state with fill-mode both, so reduced motion
    and print (animation: none) land on the finished slide (R5, R6). Step elements use transitions so a step
-   played backwards runs in reverse (R3). No viewport-width media queries: the slide is a fixed 1920×1080. */
+   played backwards runs in reverse (R3). The slide is a fixed 1920×1080, so the only viewport-width media query is
+   the script sidebar's switch to a bottom sheet (spec 261117 R24); Deck.tsx fits the stage beside it. */
 
 /* Palettes. Each slide (and the letterbox) takes its palette from its theme class (R11). */
 .paper {
@@ -128,8 +129,28 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 .progress i { display: block; height: 100%; background: var(--s-fill); }
 
 /* Language switch: top right, level with the chrome. The active language is in the slide's ink. */
-.lang-switch {
+/* Top-right controls (spec 261117 R9): Script, Play/Pause, then the language switch. */
+.deck-controls {
   position: absolute; top: 48px; right: 128px; z-index: 4;
+  display: flex; align-items: center; gap: 12px;
+}
+.deck-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  height: 52px; min-width: 52px; padding: 0 20px 0 16px; cursor: pointer;
+  font: 500 18px/1 var(--font-mono); letter-spacing: 0.14em;
+  color: var(--s-muted); background: var(--s-glass); border: 1px solid var(--s-line); border-radius: 999px;
+  transition: border-color 200ms var(--out-cubic), color 200ms var(--out-cubic), background-color 300ms var(--out-cubic);
+}
+.deck-icon { flex: none; fill: currentColor; }
+.deck-btn:hover, .deck-btn[data-on] { border-color: var(--s-accent); color: var(--s-fg); }
+.deck-btn:focus-visible { outline: 3px solid var(--s-accent); outline-offset: 4px; }
+.play-btn { padding: 0; width: 52px; }
+.play-btn[data-status='playing'] { border-color: var(--s-accent); color: var(--s-fg); }
+/* Title slide, before the first play: a filled "Listen · about N min" pill (R15). */
+.play-btn[data-pill] { width: auto; padding: 0 24px 0 18px; color: var(--s-bg); background: var(--s-fg); border-color: var(--s-fg); }
+.play-btn[data-pill]:hover { color: var(--s-bg); border-color: var(--s-accent); }
+
+.lang-switch {
   display: flex; gap: 4px; padding: 6px; cursor: pointer;
   font: 500 18px/1 var(--font-mono); letter-spacing: 0.14em;
   color: var(--s-muted); background: var(--s-glass); border: 1px solid var(--s-line); border-radius: 999px;
@@ -148,6 +169,47 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 /* The new language is revealed by a clip-path circle on the new snapshot; the old one stays put beneath it. */
 ::view-transition-old(root),
 ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+
+/* Script sidebar (spec 261117 R19-R25): on the right, in the current slide's palette; the stage fits the rest. */
+:root { --script-w: clamp(320px, 26vw, 460px); }
+.script {
+  position: fixed; top: 0; right: 0; bottom: 0; z-index: 6; width: var(--script-w);
+  display: flex; flex-direction: column;
+  background: var(--s-bg); color: var(--s-body); border-left: 1px solid var(--s-line); font-family: var(--font-body);
+  transition: background-color 900ms var(--out-cubic);
+}
+.script-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 16px;
+  padding: 24px 20px 16px 24px; border-bottom: 1px solid var(--s-line);
+}
+.script-head h2 { font: 700 20px/1.2 var(--font-display); color: var(--s-fg); }
+.script-head p { margin-top: 6px; font: 500 12px/1.4 var(--font-mono); letter-spacing: 0.14em; text-transform: uppercase; color: var(--s-muted); }
+.script-close {
+  display: inline-flex; align-items: center; justify-content: center; flex: none;
+  width: 40px; height: 40px; padding: 0; cursor: pointer;
+  color: var(--s-muted); background: none; border: 1px solid var(--s-line); border-radius: 999px;
+}
+.script-close:hover { color: var(--s-fg); border-color: var(--s-accent); }
+.script-close:focus-visible, .script-line:focus-visible { outline: 3px solid var(--s-accent); outline-offset: 2px; }
+.script-list { flex: 1; overflow-y: auto; list-style: none; margin: 0; padding: 8px 12px 48px; }
+.script-list li { padding: 16px 0 4px; }
+.script-list h3 { margin: 0 0 6px; padding: 0 12px; font: 600 13px/1.4 var(--font-mono); letter-spacing: 0.08em; color: var(--s-muted); }
+.script-list h3 span { color: var(--s-accent); }
+.script-line {
+  display: block; width: 100%; margin: 2px 0; padding: 8px 12px; cursor: pointer; text-align: left;
+  font: 400 15px/1.55 var(--font-body); color: var(--s-body);
+  background: none; border: 0; border-left: 3px solid transparent; border-radius: 0 8px 8px 0;
+}
+.script-line:hover { color: var(--s-fg); background: var(--s-glass); }
+.script-line[aria-current] { color: var(--s-fg); background: var(--s-glass); border-left-color: var(--s-accent); }
+@media (min-width: 900px) {
+  .viewport[data-script] { right: var(--script-w); }
+}
+/* Narrow screens: a bottom sheet of half the height (R24). */
+@media (max-width: 899px) {
+  .script { top: auto; left: 0; width: auto; height: 50vh; border-left: 0; border-top: 1px solid var(--s-line); }
+  .viewport[data-script] { bottom: 50vh; }
+}
 
 /* Reduced motion (R6): end states at once, nothing moves. */
 @media (prefers-reduced-motion: reduce) {

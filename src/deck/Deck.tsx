@@ -1,30 +1,29 @@
-import { useEffect, useState } from 'react'
-import { useContent } from '../content'
+import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
+import { useContent, useLang } from '../content'
 import { SLIDES } from '../slides'
 import { LangSwitch } from './Lang'
+import { fit, W, H } from './fit'
 import { useReducedMotion } from './motion'
+import { PlayButton, ScriptPanel, ScriptToggle } from './Narration'
+import { Narrator, NarratorContext } from './narrator'
 import { indexFromHash, KEYS_NEXT, KEYS_PREV, next, pad2, prev, type Pos } from './nav'
 import { Txt } from './Text'
 import type { Enter, SlideDef } from './types'
 
-const W = 1920
-const H = 1080
 /** A4 landscape is 297 mm wide = 1122.5 CSS px; the slide is zoomed to that width (R5). */
 export const PRINT_ZOOM = (297 * 96) / 25.4 / W
 const OUT_MS = 500
 
-function fit() {
-  return Math.min(window.innerWidth / W, window.innerHeight / H)
+const onResize = (cb: () => void) => {
+  window.addEventListener('resize', cb)
+  return () => window.removeEventListener('resize', cb)
 }
+const windowSize = () => `${window.innerWidth}x${window.innerHeight}`
 
-function useFit() {
-  const [zoom, setZoom] = useState(fit)
-  useEffect(() => {
-    const on = () => setZoom(fit())
-    window.addEventListener('resize', on)
-    return () => window.removeEventListener('resize', on)
-  }, [])
-  return zoom
+function useFit(script: boolean) {
+  const size = useSyncExternalStore(onResize, windowSize, () => `${W}x${H}`)
+  const [vw, vh] = size.split('x').map(Number)
+  return fit(vw, vh, script)
 }
 
 interface FrameProps {
@@ -84,17 +83,35 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
     visit: 0,
     out: null,
   }))
-  const zoom = useFit()
+  const [script, setScript] = useState(() => new URLSearchParams(window.location.search).has('script'))
+  const zoom = useFit(script)
   const reduced = useReducedMotion()
+  const { lang } = useLang()
 
-  useEffect(() => {
-    const go = (to: (p: Pos) => Pos, enter: Enter | null) =>
+  const go = useCallback(
+    (to: (p: Pos) => Pos, enter: Enter | null) =>
       setView((v) => {
         const pos = to(v.pos)
         if (pos.index === v.pos.index) return pos.step === v.pos.step ? v : { ...v, pos }
         const e = enter ?? (pos.index > v.pos.index ? 'next' : 'prev')
         return { pos, enter: e, visit: v.visit + 1, out: { pos: v.pos, visit: v.visit, enter: v.enter } }
-      })
+      }),
+    [],
+  )
+
+  // The AI-voiced investor view (spec 261117): slide 6's video takes over after its line.
+  const [narrator] = useState(
+    () =>
+      new Narrator({
+        steps,
+        videoSlides: new Set(slides.flatMap((s, i) => (s.id === 'demo' ? [i] : []))),
+        go: (pos) => go(() => pos, null),
+      }),
+  )
+  useEffect(() => narrator.sync(view.pos, lang), [narrator, view.pos, lang])
+  useEffect(() => () => narrator.dispose(), [narrator])
+
+  useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
       if (e.altKey || e.ctrlKey || e.metaKey) return
       // Space or Enter on a focused button presses that button, not the deck.
@@ -116,7 +133,7 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
       window.removeEventListener('keydown', onKey)
       window.removeEventListener('hashchange', onHash)
     }
-  }, [steps, total])
+  }, [go, steps, total])
 
   // The hash follows the slide without adding history entries (R4).
   useEffect(() => {
@@ -134,37 +151,44 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
 
   const cur = slides[view.pos.index]
   return (
-    <main className={`viewport ${cur.theme}`} data-slide={view.pos.index + 1} data-step={view.pos.step}>
-      <div className="stage" style={{ zoom }}>
-        {view.out && (
+    <NarratorContext.Provider value={narrator}>
+      <main className={`viewport ${cur.theme}`} data-slide={view.pos.index + 1} data-step={view.pos.step} data-script={script || undefined}>
+        <div className="stage" style={{ zoom }}>
+          {view.out && (
+            <Frame
+              key={view.out.visit}
+              def={slides[view.out.pos.index]}
+              n={view.out.pos.index + 1}
+              total={total}
+              step={view.out.pos.step}
+              active={false}
+              still={reduced}
+              print={false}
+              enter={view.out.enter}
+              state="out"
+            />
+          )}
           <Frame
-            key={view.out.visit}
-            def={slides[view.out.pos.index]}
-            n={view.out.pos.index + 1}
+            key={view.visit}
+            def={cur}
+            n={view.pos.index + 1}
             total={total}
-            step={view.out.pos.step}
-            active={false}
+            step={view.pos.step}
+            active
             still={reduced}
             print={false}
-            enter={view.out.enter}
-            state="out"
+            enter={view.enter}
+            state="in"
           />
-        )}
-        <Frame
-          key={view.visit}
-          def={cur}
-          n={view.pos.index + 1}
-          total={total}
-          step={view.pos.step}
-          active
-          still={reduced}
-          print={false}
-          enter={view.enter}
-          state="in"
-        />
-        <LangSwitch />
-      </div>
-    </main>
+          <div className="deck-controls">
+            <ScriptToggle open={script} onToggle={() => setScript((o) => !o)} />
+            <PlayButton wide={view.pos.index === 0} />
+            <LangSwitch />
+          </div>
+        </div>
+      </main>
+      {script && <ScriptPanel slides={slides} pos={view.pos} theme={cur.theme} onClose={() => setScript(false)} />}
+    </NarratorContext.Provider>
   )
 }
 

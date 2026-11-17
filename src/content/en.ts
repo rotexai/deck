@@ -12,6 +12,19 @@ export const en = {
     slideLabel: 'Slide {n} of {total}',
     // The language button (top right) names the language it switches to.
     switchTo: 'Switch to Vietnamese',
+    // Narrated investor view (spec 261117): play button, script sidebar, AI-voice disclosure.
+    narrator: {
+      listen: 'Listen · about {min} min',
+      play: 'Play the AI-voiced pitch',
+      resume: 'Resume the AI-voiced pitch',
+      pause: 'Pause the narration',
+      replay: 'Replay the AI-voiced pitch from the start',
+      script: 'Script',
+      showScript: 'Show the script',
+      hideScript: 'Hide the script',
+      aiVoice: 'Narrated by an AI voice',
+      close: 'Close the script',
+    },
   },
 
   title: {
@@ -28,6 +41,10 @@ export const en = {
         { href: 'https://investor.rotexai.com', title: 'Investors', cta: 'For investors', text: 'investor.rotexai.com' },
       ],
     },
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'This is RotexAI: software that fits each shop. A shop owner describes how the shop works, in plain words. RotexAI builds the app, and changes it when the shop changes. You are hearing an AI voice; the Script button at the top shows every word.',
+    ],
     source: 'investor.rotexai.com',
   },
 
@@ -51,6 +68,15 @@ export const en = {
       total: ['STEPS LINKED', '0'],
       note: 'Every night, by hand. Nothing carries over to tomorrow.',
     },
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'Small shops run on phones, chat and memory. Take a bakery with two shops. Every evening, staff in the first shop count the stock on a phone.',
+      'The second shop does the same, on another phone.',
+      'When flour runs low, someone asks for a restock in a chat.',
+      'Butter runs low: another message.',
+      'Then the manager approves, from memory.',
+      'Five steps, and none of them linked. It happens by hand every night, and nothing carries over to tomorrow.',
+    ],
     source: 'Scenario from the RotexAI product walkthrough (illustrative)',
   },
 
@@ -74,23 +100,35 @@ export const en = {
       { title: 'Misfit is a key cause of ERP failure', body: 'The system’s built-in processes don’t match how the firm works.' },
       { title: 'Making it fit costs the most', body: 'Vendor costs, customisation included, rank highest of 10 cost factors.' },
     ],
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'Packaged ERP does not solve this, because it fails small firms on fit. In one study, nine SMEs rated what mattered most in their ERP project.',
+      'Organisational fit ranks ninth across 320 research papers, but third for the SMEs themselves.',
+      'Misfit is a key cause of ERP failure: the system’s built-in processes do not match how the firm works. And vendor costs, customisation included, rank highest of ten cost factors.',
+    ],
     source:
       'Leyh (2014), FedCSIS, Table 2 and Fig. 1 · Jegorova & Grabis (2025), CSIMQ · Haddara & Elragal (2013), IJISPM, Table 2',
   },
 
   market: {
     kicker: 'The market',
-    headline: 'Most SMEs already pay for software. Few run the business on it.',
+    headline: 'Most SMEs already use software. Few run the business on it.',
     dots: { total: 817, columns: 43, rows: 19, paying: 718, erp: 122 },
     steps: [
       { figure: 817000, tone: 'ink', caption: 'SMEs in Vietnam, 2024. 93.6% are micro or small.' },
-      { figure: 718000, tone: 'blue', caption: 'already pay for accounting software (88% of surveyed firms).' },
+      { figure: 718000, tone: 'blue', caption: 'already use accounting software (88% of surveyed firms).' },
       { figure: 122000, tone: 'warn', caption: 'run an ERP for the rest of the business (15%). The other 596,000 are our opening.' },
     ],
-    aside: 'Beside them: 5.2 million household businesses, not shown.',
+    aside: 'Beside them: 5.17 million individual business establishments, not shown.',
     gridLabel: 'Dot grid of 817 dots, one per 1,000 SMEs: {figure} highlighted.',
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'Vietnam had about 817,000 SMEs in 2024. 93.6 percent of them are micro or small.',
+      'By our estimate, 718,000 already use accounting software: 88 percent of surveyed firms.',
+      'But only about 122,000 run an ERP for the rest of the business. The other 596,000 are our opening. And beside them sit 5.17 million individual business establishments, not counted here.',
+    ],
     source:
-      'One dot = 1,000 SMEs · Statistics Office, White Book 2025 & Statistical Summary 2025 · MOIT E-commerce White Book 2022 (88% and 15% of surveyed firms) · 718k and 122k are our estimates',
+      'One dot = 1,000 SMEs · Statistics Office, White Book 2025 & Statistical Summary 2025 · MOIT E-commerce White Book 2022 (2021 survey: 88% and 15% of surveyed firms) · 718k and 122k are our estimates',
   },
 
   solution: {
@@ -114,6 +152,12 @@ export const en = {
       ],
       button: 'Approve v3',
     },
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'So: describe the shop, and get its app. In this simplified scene from the live portal, the owner says it in plain words: two bakery shops, a stock count every evening, a restock request when flour or butter runs low, and the manager approves.',
+      'RotexAI turns that into a workflow: the evening stock count, a check against the threshold, a restock request, and the manager’s approval.',
+      'Every change is a new version the owner approves. Here, version three adds butter to the restock list.',
+    ],
     source: 'Product scene, simplified from the live RotexAI portal',
   },
 
@@ -133,6 +177,10 @@ export const en = {
       { at: '1:48', text: 'Change it any time' },
       { at: '2:04', text: 'Or start from the marketplace' },
     ],
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'Here is the walkthrough, from plain words to a working app. It is a simulation: the portal rebuilt from its source code, not a screen recording.',
+    ],
     source: 'RotexAI product walkthrough, simulated portal (also on investor.rotexai.com)',
   },
 
@@ -149,6 +197,10 @@ export const en = {
       body: 'One app per shop, with many screens. Every read and write goes through a workflow, never straight to the database.',
     },
     mcp: { title: 'Coding agents over MCP', body: 'Agents build and publish apps through the same workflows, with the owner’s confirmation.' },
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'Under the hood, every action is a workflow you can inspect: who does it, what it checks, and what it records. Each shop gets one app with many screens, and every read and write goes through a workflow, never straight to the database. Coding agents can build and publish apps over MCP, through the same workflows, with the owner’s confirmation.',
+    ],
     source: 'Architecture of the live RotexAI platform',
   },
 
@@ -178,21 +230,32 @@ export const en = {
         source: 'Resolution 198/2025/QH15 · Decree 141/2026',
       },
     ],
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'Why now? Three things changed in 2026. First, the technology: AI can now build software around each shop, which removes the misfit that sinks packaged ERP.',
+      'Second, on 16 March 2026, the state set a goal of at least 300,000 SMEs on digital solutions by 2030, with vouchers and “use first, pay later”.',
+      'Third, from 1 January 2026, lump-sum tax ended for households. Those above one billion dong in revenue must issue e-invoices, which pushes them onto digital books.',
+    ],
     source: 'Sources on each card',
   },
 
   competition: {
     kicker: 'Competition',
-    headline: 'RotexAI fits the shop *without a developer*.',
-    axes: { up: 'Fits the shop’s process', down: 'A fixed, generic process', left: 'Needs a developer', right: 'No developer needed' },
-    // quadrant: tl, tr, bl, br. RotexAI lands last.
+    headline: 'Nobody else fits Vietnam *and* lets the owner change it.',
+    axes: { up: 'Fits Vietnamese business', down: 'Weak fit for Vietnam', left: 'Changes need a partner', right: 'The owner changes it alone' },
+    // quadrant: tl, tr, bl, br. RotexAI lands last. Groups and names from wiki Pillar 7 (2026-11-17).
     others: [
-      { quadrant: 'bl', name: 'Packaged ERP', note: 'Fixed processes, configured by consultants', names: '[competitor names]' },
-      { quadrant: 'tl', name: 'Low-code platforms', note: 'Fits, once a developer builds it', names: '[competitor names]' },
-      { quadrant: 'br', name: 'LLM app builders', note: 'Screens from a prompt, without the shop’s process', names: '[competitor names]' },
+      { quadrant: 'tl', name: 'Packaged ERP and sales apps', note: 'Fit Vietnamese tax and e-invoices; a change is a partner project, or not possible', names: 'MISA AMIS · Base.vn · Odoo · KiotViet · Sapo' },
+      { quadrant: 'br', name: 'AI app builders and low-code', note: 'The owner can change them, but they know nothing of Vietnamese business', names: 'Lovable · Replit · Airtable · Lark Base' },
     ],
-    us: { quadrant: 'tr', name: 'RotexAI', note: 'Built from the shop’s own description; the owner approves each change' },
-    source: 'Our positioning by category · competitor names withheld until approved',
+    us: { quadrant: 'tr', name: 'RotexAI', note: 'Fits the shop, and the owner changes it by describing the change' },
+    aside: 'Met most often: Excel, Zalo and paper. Free and familiar, yet Excel costs a 15-person distributor about 36.2M VND a year in staff time and errors.',
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'We looked at 38 competitors. Packaged ERP and sales apps, like MISA AMIS, Odoo and KiotViet, fit Vietnamese tax and e-invoices, but every change is a partner project. AI app builders and low-code tools, like Lovable and Airtable, let the owner change the app, but they know nothing of Vietnamese business. And most often, the shop still runs on Excel, Zalo and paper.',
+      'Of 26 products we could test, none fits Vietnam and lets the owner make the change alone. That corner is ours: RotexAI fits the shop, and the owner changes it by describing the change.',
+    ],
+    source: 'RotexAI research, 17 Nov 2026: 38 competitors from public sources; 0 of 26 with change tests combine a good Vietnam fit with 3 or more of 5 changes the owner can make alone',
   },
 
   business: {
@@ -202,6 +265,10 @@ export const en = {
       { title: 'Price per shop', value: '[Price per shop]', body: '[What the plan includes]' },
       { title: 'Billing', value: '[Billing period]', body: 'Plans are billed in the portal; a plan starts once its first invoice is paid.' },
       { title: 'Marketplace templates', value: '[Template revenue share]', body: 'Owners can start from a published project and adapt it.' },
+    ],
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'The model is simple: each shop pays for its own app. Plans are billed in the portal, and a plan starts once its first invoice is paid. Owners can also start from a published project in the marketplace and adapt it.',
     ],
     source: 'Prices and terms are placeholders until they are set',
   },
@@ -220,6 +287,10 @@ export const en = {
       { label: 'Apps built', value: '[numbers]' },
       { label: 'Monthly revenue', value: '[numbers]' },
     ],
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'RotexAI is live in production today. In the portal, an owner describes the shop, checks the plan, then builds and runs the app. Team access, with read, write, run and delete rights per object, shipped on 19 October 2026. The marketplace followed on 26 October. And since 14 November, a coding agent can publish an app over MCP, with the owner confirming.',
+    ],
     source: 'RotexAI production release log · usage numbers to come',
   },
 
@@ -233,6 +304,10 @@ export const en = {
       'RotexAI began as a way to take the manual work out of family and friends’ businesses: first understand their work, then let software do it.',
     background: 'Engineer. Builds RotexAI end to end and uses every tool on real work before any customer does.',
     link: { href: 'https://qvanle.rotexai.com', text: 'qvanle.rotexai.com' },
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'RotexAI is built by its founder. It began as a way to take the manual work out of family and friends’ businesses: first understand their work, then let software do it. The founder is an engineer who builds RotexAI end to end, and uses every tool on real work before any customer does.',
+    ],
     source: 'qvanle.rotexai.com',
   },
 
@@ -254,6 +329,13 @@ export const en = {
       { when: 'BY MONTH 2', what: '[First milestone]' },
       { when: 'BY MONTH 4', what: '[Second milestone]' },
       { when: 'BY MONTH 6', what: '[N paying shops]' },
+    ],
+    // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
+    narration: [
+      'We are raising 150 million dong: six months to prove it. 60 million is founder runway, at 10 million a month.',
+      '30 million goes to the first customers.',
+      '30 million covers infrastructure, at 5 million a month.',
+      'And 30 million is held in reserve. To talk, write to contact@rotexai.com, or visit investor.rotexai.com. Thank you for listening.',
     ],
     source: 'contact@rotexai.com · investor.rotexai.com',
   },
