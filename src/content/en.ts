@@ -249,13 +249,13 @@ export const en = {
       { quadrant: 'br', name: 'AI app builders and low-code', note: 'The owner can change them, but they know nothing of Vietnamese business', names: 'Lovable · Replit · Airtable · Lark Base' },
     ],
     us: { quadrant: 'tr', name: 'RotexAI', note: 'Fits the shop, and the owner changes it by describing the change' },
-    aside: 'Met most often: Excel, Zalo and paper. Free and familiar, yet Excel costs a 15-person distributor about 36.2M VND a year in staff time and errors.',
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
       'We looked at 38 competitors. Packaged ERP and sales apps, like MISA AMIS, Odoo and KiotViet, fit Vietnamese tax and e-invoices, but every change is a partner project. AI app builders and low-code tools, like Lovable and Airtable, let the owner change the app, but they know nothing of Vietnamese business. And most often, the shop still runs on Excel, Zalo and paper.',
       'Of 26 products we could test, none fits Vietnam and lets the owner make the change alone. That corner is ours: RotexAI fits the shop, and the owner changes it by describing the change.',
     ],
-    source: 'RotexAI research, 17 Nov 2026: 38 competitors from public sources; 0 of 26 with change tests combine a good Vietnam fit with 3 or more of 5 changes the owner can make alone',
+    // No source line on this slide (owner 2026-11-17); the research is wiki Pillar 7.
+    source: '',
   },
 
   business: {

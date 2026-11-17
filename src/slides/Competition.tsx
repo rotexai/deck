@@ -34,7 +34,6 @@ export function CompetitionSlide({ step }: SlideProps) {
           <p className="card-body">{c.us.note}</p>
         </div>
       </div>
-      <p className="aside">{c.aside}</p>
     </div>
   )
 }

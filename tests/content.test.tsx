@@ -16,7 +16,8 @@ const SLOT = /\[[^\]]+\]/g
 describe('R29 sources', () => {
   it('every slide names a source', () => {
     expect(SLIDES).toHaveLength(13)
-    for (const s of SLIDES) {
+    // The competition slide has no source line by the owner's choice (2026-11-17); its research is wiki Pillar 7.
+    for (const s of SLIDES.filter((d) => d.copy !== 'competition')) {
       expect(en[s.copy].source.trim(), s.id).not.toBe('')
       expect(vi[s.copy].source.trim(), s.id).not.toBe('')
     }

@@ -277,15 +277,13 @@ export const vi: Content = {
       name: 'RotexAI',
       note: 'Vừa với cửa hàng, và chủ cửa hàng thay đổi bằng cách mô tả điều cần đổi',
     },
-    aside:
-      'Gặp nhiều nhất: Excel, Zalo và giấy tờ. Miễn phí và quen thuộc, nhưng Excel khiến một nhà phân phối 15 người tốn khoảng 36,2 triệu đồng mỗi năm cho thời gian nhân viên và sai sót.',
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
       'Chúng tôi đã xem xét 38 đối thủ cạnh tranh. ERP đóng gói và ứng dụng bán hàng, như MISA AMIS, Odoo và KiotViet, khớp với thuế và hóa đơn điện tử Việt Nam, nhưng mỗi thay đổi đều là một dự án với đối tác. Các công cụ tạo app bằng AI và low-code, như Lovable và Airtable, cho phép chủ cửa hàng thay đổi ứng dụng, nhưng chúng không biết gì về kinh doanh Việt Nam. Và phổ biến nhất, cửa hàng vẫn chạy bằng Excel, Zalo và giấy tờ.',
       'Trong 26 sản phẩm chúng tôi có thể thử, không sản phẩm nào vừa với Việt Nam và cho phép chủ cửa hàng tự thay đổi. Vị trí đó thuộc về chúng tôi: RotexAI vừa với cửa hàng, và chủ cửa hàng thay đổi bằng cách mô tả điều cần đổi.',
     ],
-    source:
-      'Nghiên cứu của RotexAI, 17/11/2026: 38 đối thủ từ nguồn công khai; 0 trong 26 sản phẩm có bài kiểm tra thay đổi kết hợp mức vừa với Việt Nam với ít nhất 3 trên 5 thay đổi do chủ cửa hàng tự thực hiện',
+    // No source line on this slide (owner 2026-11-17); the research is wiki Pillar 7.
+    source: '',
   },
 
   business: {

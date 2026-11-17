@@ -199,14 +199,14 @@
 .ax.down { left: 50%; bottom: 0; transform: translateX(-50%); }
 .ax.left { left: 0; top: 50%; transform: translateY(-50%); padding-left: 0; }
 .ax.right { right: 0; top: 50%; transform: translateY(-50%); padding-right: 0; }
-.q-card { position: absolute; width: 560px; display: flex; flex-direction: column; gap: 10px; padding: 28px 32px; }
-.q-card .card-title { font-size: 34px; }
-.q-card .card-body { font-size: 22px; }
-.q-names { font-size: 22px; }
-.q-tl { left: 96px; top: 56px; }
-.q-tr { right: 96px; top: 56px; }
-.q-bl { left: 96px; bottom: 56px; }
-.q-br { right: 96px; bottom: 56px; }
+.q-card { position: absolute; width: 660px; display: flex; flex-direction: column; gap: 6px; padding: 20px 28px; }
+.q-card .card-title { font-size: 30px; }
+.q-card .card-body { font-size: 21px; }
+.q-names { font-size: 21px; }
+.q-tl { left: 96px; top: 48px; }
+.q-tr { right: 96px; top: 48px; }
+.q-bl { left: 96px; bottom: 48px; }
+.q-br { right: 96px; bottom: 48px; }
 .q-card.us { border-color: var(--s-accent); }
 .drop { animation: drop-in 700ms var(--out-quint) var(--d) both; }
 @keyframes drop-in { from { opacity: 0; transform: translateY(-32px); } }
