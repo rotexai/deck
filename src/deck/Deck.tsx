@@ -4,7 +4,8 @@ import { SLIDES } from '../slides'
 import { LangSwitch } from './Lang'
 import { fit, W, H } from './fit'
 import { useReducedMotion } from './motion'
-import { PlayButton, ScriptPanel, ScriptToggle } from './Narration'
+import { useCoach } from './coach'
+import { CoachMark, PlayButton, ScriptPanel, ScriptToggle } from './Narration'
 import { Narrator, NarratorContext } from './narrator'
 import { indexFromHash, KEYS_NEXT, KEYS_PREV, next, pad2, prev, type Pos } from './nav'
 import { Txt } from './Text'
@@ -150,6 +151,8 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
   }, [view.out, view.visit, reduced])
 
   const cur = slides[view.pos.index]
+  const { played } = useSyncExternalStore(narrator.subscribe, narrator.getState, narrator.getState)
+  const coach = useCoach(script || played)
   return (
     <NarratorContext.Provider value={narrator}>
       <main className={`viewport ${cur.theme}`} data-slide={view.pos.index + 1} data-step={view.pos.step} data-script={script || undefined}>
@@ -181,8 +184,11 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
             state="in"
           />
           <div className="deck-controls">
-            <ScriptToggle open={script} onToggle={() => setScript((o) => !o)} />
-            <PlayButton wide={view.pos.index === 0} />
+            <ScriptToggle open={script} onToggle={() => setScript((o) => !o)} coach={coach} />
+            <span className="coach-anchor">
+              <PlayButton wide={view.pos.index === 0} coach={coach} />
+              {coach && <CoachMark wide={view.pos.index === 0 && !played} />}
+            </span>
             <LangSwitch />
           </div>
         </div>

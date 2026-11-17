@@ -150,6 +150,35 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 .play-btn[data-pill] { width: auto; padding: 0 24px 0 18px; color: var(--s-bg); background: var(--s-fg); border-color: var(--s-fg); }
 .play-btn[data-pill]:hover { color: var(--s-bg); border-color: var(--s-accent); }
 
+/* First-visit coach mark (owner 2026-11-17): a pulse on Play and a callout under it that names Listen and Script. */
+.coach-anchor { position: relative; display: inline-flex; }
+.coach {
+  position: absolute; top: calc(100% + 22px); left: 50%; width: 400px; margin-left: -200px; z-index: 5;
+  padding: 18px 22px; border-radius: 18px; pointer-events: none;
+  font: 500 20px/1.45 var(--font-body); color: var(--s-bg); background: var(--s-fg);
+  box-shadow: var(--shadow-ink);
+  animation: coach-in 600ms var(--out-cubic) both;
+}
+.coach::before {
+  content: ''; position: absolute; top: -8px; left: 50%; width: 18px; height: 18px; margin-left: -9px;
+  background: inherit; border-radius: 3px; transform: rotate(45deg);
+}
+/* Beside the round Play button the callout would cross the margin: align it with the controls' right edge
+   (language switch 139px + gap 12px) and move the arrow back over Play (151px + half of 52px - 9px). */
+.coach:not([data-wide]) { left: auto; right: -151px; margin-left: 0; }
+.coach:not([data-wide])::before { left: auto; right: 168px; margin-left: 0; }
+@keyframes coach-in { from { opacity: 0; transform: translateY(-12px); } }
+.play-btn[data-coach] { animation: coach-pulse 1.8s var(--out-cubic) infinite; }
+@keyframes coach-pulse {
+  0% { box-shadow: 0 0 0 0 var(--s-accent); }
+  75%, 100% { box-shadow: 0 0 0 20px transparent; }
+}
+.script-btn[data-coach] { border-color: var(--s-accent); color: var(--s-fg); }
+@media (prefers-reduced-motion: reduce) {
+  .coach { animation: none; }
+  .play-btn[data-coach] { animation: none; box-shadow: 0 0 0 4px var(--s-accent); }
+}
+
 .lang-switch {
   display: flex; gap: 4px; padding: 6px; cursor: pointer;
   font: 500 18px/1 var(--font-mono); letter-spacing: 0.14em;

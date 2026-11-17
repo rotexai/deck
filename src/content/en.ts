@@ -24,6 +24,7 @@ export const en = {
       hideScript: 'Hide the script',
       aiVoice: 'Narrated by an AI voice',
       close: 'Close the script',
+      coach: 'Listen to the {min}-minute pitch in an AI voice, or open the Script to read along.',
     },
   },
 

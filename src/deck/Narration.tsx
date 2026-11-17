@@ -27,7 +27,7 @@ const CLOSE = 'M6.4 5 12 10.6 17.6 5 19 6.4 13.4 12 19 17.6 17.6 19 12 13.4 6.4 
 
 /** Play / Pause / Replay. On the title slide, before the first play, a wider "Listen · about N min" pill (R15);
  *  N is the rendered listening time (lines, gaps and the demo video) that `npm run narrate` records. */
-export function PlayButton({ wide }: { wide: boolean }) {
+export function PlayButton({ wide, coach }: { wide: boolean; coach?: boolean }) {
   const n = useNarrator()
   const { status, played } = useNarratorState()
   const c = useContent().deck.narrator
@@ -41,6 +41,7 @@ export function PlayButton({ wide }: { wide: boolean }) {
       type="button"
       className="deck-btn play-btn"
       data-pill={pill || undefined}
+      data-coach={coach || undefined}
       data-status={status}
       aria-label={label}
       title={label}
@@ -53,7 +54,7 @@ export function PlayButton({ wide }: { wide: boolean }) {
   )
 }
 
-export function ScriptToggle({ open, onToggle }: { open: boolean; onToggle: () => void }) {
+export function ScriptToggle({ open, onToggle, coach }: { open: boolean; onToggle: () => void; coach?: boolean }) {
   const c = useContent().deck.narrator
   return (
     <button
@@ -64,12 +65,24 @@ export function ScriptToggle({ open, onToggle }: { open: boolean; onToggle: () =
       aria-label={open ? c.hideScript : c.showScript}
       title={open ? c.hideScript : c.showScript}
       data-on={open || undefined}
+      data-coach={coach || undefined}
       onMouseDown={keepFocus}
       onClick={onToggle}
     >
       <Icon d={LINES} />
       <span>{c.script}</span>
     </button>
+  )
+}
+
+/** The callout under the Play button: what Listen and Script do, and how long the pitch is. */
+export function CoachMark({ wide }: { wide: boolean }) {
+  const c = useContent().deck.narrator
+  const { lang } = useLang()
+  return (
+    <p className="coach" role="status" data-wide={wide || undefined}>
+      {c.coach.replace('{min}', String(narration.minutes[lang]))}
+    </p>
   )
 }
 

@@ -63,7 +63,9 @@ describe('spec 261117 controls', () => {
     const controls = container.querySelector('.deck-controls') as HTMLElement
     const kids = [...controls.children].map((el) => el.className)
     expect(kids[0]).toContain('script-btn')
-    expect(kids[1]).toContain('play-btn')
+    // Play sits in the coach-mark anchor (first-visit tip, owner 2026-11-17).
+    expect(kids[1]).toContain('coach-anchor')
+    expect(controls.children[1].firstElementChild?.className).toContain('play-btn')
     expect(kids[2]).toContain('lang-switch')
 
     const play = controls.querySelector('.play-btn') as HTMLButtonElement

@@ -19,6 +19,7 @@ export const vi: Content = {
       hideScript: 'Ẩn kịch bản',
       aiVoice: 'Được thuyết minh bằng giọng AI',
       close: 'Đóng kịch bản',
+      coach: 'Nghe bài thuyết trình {min} phút với giọng đọc AI, hoặc mở Kịch bản để đọc theo.',
     },
   },
 
