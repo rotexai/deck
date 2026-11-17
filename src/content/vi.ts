@@ -168,10 +168,10 @@ export const vi: Content = {
     headline: 'Từ lời thường đến *ứng dụng chạy được*.',
     label: 'Mô phỏng: cổng RotexAI được dựng lại từ mã nguồn, không phải bản ghi màn hình',
     video: {
-      src: '/media/walkthrough.mp4',
-      poster: '/media/walkthrough.jpg',
-      captions: '/media/walkthrough.en.vtt',
-      captionsLabel: 'Tiếng Anh',
+      src: '/media/walkthrough.vi.mp4',
+      poster: '/media/walkthrough.vi.jpg',
+      captions: '/media/walkthrough.vi.vtt',
+      captionsLabel: 'Tiếng Việt',
     },
     chaptersTitle: 'Trong bản hướng dẫn',
     chapters: [

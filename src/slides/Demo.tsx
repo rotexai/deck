@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useContent } from '../content'
+import { useContent, useLang } from '../content'
 import { useNarrator, useNarratorState } from '../deck/narrator'
 import { Headline } from '../deck/Text'
 import type { SlideProps } from '../deck/types'
@@ -14,6 +14,7 @@ const start = (v: HTMLVideoElement) => {
  *  the narration take the next step. */
 export function DemoSlide({ active, still, print }: SlideProps) {
   const c = useContent().demo
+  const { lang } = useLang()
   const ref = useRef<HTMLVideoElement>(null)
   const narrator = useNarrator()
   const { status, phase } = useNarratorState()
@@ -51,6 +52,7 @@ export function DemoSlide({ active, still, print }: SlideProps) {
             <img src={c.video.poster} alt="" />
           ) : (
             <video
+              key={c.video.src}
               ref={ref}
               src={c.video.src}
               poster={c.video.poster}
@@ -60,7 +62,7 @@ export function DemoSlide({ active, still, print }: SlideProps) {
               controls={still}
               onEnded={() => narrator?.videoEnded()}
             >
-              <track kind="captions" src={c.video.captions} srcLang="en" label={c.video.captionsLabel} default />
+              <track kind="captions" src={c.video.captions} srcLang={lang} label={c.video.captionsLabel} default />
             </video>
           )}
         </figure>

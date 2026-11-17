@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs'
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { LangContext } from '../src/content'
@@ -33,7 +34,9 @@ describe('Vietnamese copy', () => {
   })
 
   it('keeps media paths and links', () => {
-    expect(vi.demo.video).toMatchObject({ src: en.demo.video.src, poster: en.demo.video.poster, captions: en.demo.video.captions })
+    // The Vietnamese deck plays the Vietnamese walkthrough (same cut and chapter times, from web/investor).
+    expect(vi.demo.video).toMatchObject({ src: '/media/walkthrough.vi.mp4', poster: '/media/walkthrough.vi.jpg', captions: '/media/walkthrough.vi.vtt' })
+    for (const f of Object.values(vi.demo.video).filter((v) => v.startsWith('/media/'))) expect(existsSync(`public${f}`), f).toBe(true)
     expect(vi.team.link.href).toBe(en.team.link.href)
     expect(vi.team.portrait.src).toBe(en.team.portrait.src)
   })
