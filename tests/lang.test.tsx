@@ -1,3 +1,4 @@
+import { stripCues } from '../src/content/cues'
 import { existsSync } from 'node:fs'
 import { act, fireEvent, render, screen } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
@@ -100,7 +101,7 @@ describe('language switch', () => {
     )
     expect(container.querySelector('.lang-switch')).toBeNull()
     const slots = [...container.querySelectorAll('.slot')].map((e) => e.textContent)
-    for (const [, s] of leaves(vi)) for (const w of s.match(/\[[^\]]+\]/g) ?? []) expect(slots, w).toContain(w)
+    for (const [, s] of leaves(vi)) for (const w of stripCues(s).match(/\[[^\]]+\]/g) ?? []) expect(slots, w).toContain(w)
     expect(container.textContent).toContain(plain(vi.ask.headline))
   })
 })

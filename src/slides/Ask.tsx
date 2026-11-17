@@ -25,7 +25,7 @@ export function AskSlide({ step, still }: SlideProps) {
         <Headline className="h2 x88" text={c.headline} />
       </div>
       <div className="funds">
-        <p className="ask-total">
+        <p className="ask-total" data-cue="total">
           <span>{c.totalLabel}</span>{' '}
           <b data-total={SUM}>
             {total}
@@ -34,12 +34,12 @@ export function AskSlide({ step, still }: SlideProps) {
         </p>
         <div className="fund-bar" role="img" aria-label={c.barLabel}>
           {funds.map((f, i) => (
-            <span key={f.label} className={`seg seg-${i} st`} {...st(i, step)} style={{ width: `${(f.amount / SUM) * 100}%` }} />
+            <span key={f.label} className={`seg seg-${i} st`} data-cue={`f${i}`} {...st(i, step)} style={{ width: `${(f.amount / SUM) * 100}%` }} />
           ))}
         </div>
         <div className="fund-labels">
           {funds.map((f, i) => (
-            <div key={f.label} className="fund-label st" {...st(i, step)} style={{ width: `${(f.amount / SUM) * 100}%` }}>
+            <div key={f.label} className="fund-label st" data-cue={`f${i}`} {...st(i, step)} style={{ width: `${(f.amount / SUM) * 100}%` }}>
               <span className="amt">
                 {f.amount}
                 {c.amountUnit}
@@ -49,7 +49,7 @@ export function AskSlide({ step, still }: SlideProps) {
           ))}
         </div>
       </div>
-      <div className="milestones">
+      <div className="milestones" data-cue="milestones">
         {c.milestones.map((m, i) => (
           <div key={m.when} className="milestone st" {...st(last, step)} style={{ '--d': `${500 + i * 140}ms` } as CSSProperties}>
             <span className="when">{m.when}</span>

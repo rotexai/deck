@@ -19,13 +19,14 @@ export function ProblemSlide({ step }: SlideProps) {
         <Headline className="h2" text={c.headline} />
       </div>
       <div className="problem-grid">
-        <div className="chart">
+        <div className="chart" data-cue="chart">
           <p className="chart-label">{c.chartLabel}</p>
           <div className="bars" style={{ height: bars.length * PITCH - 18 }}>
             {bars.map((b, i) => (
               <div
                 key={b.label}
                 className={'bar-row' + (i === fitAt ? ' fit' : '')}
+                data-cue={i === fitAt ? 'fit' : undefined}
                 data-dim={step >= 1 && i !== fitAt ? '' : undefined}
                 style={{ transform: `translateY(${order.indexOf(i) * PITCH}px)`, '--i': i } as CSSProperties}
               >
@@ -37,7 +38,7 @@ export function ProblemSlide({ step }: SlideProps) {
               </div>
             ))}
           </div>
-          <div className="chip-row">
+          <div className="chip-row" data-cue="chip">
             <span className="chip-from">{c.chip.from}</span>
             <span className="st" aria-hidden="true" {...st(1, step)}>
               →
@@ -49,7 +50,7 @@ export function ProblemSlide({ step }: SlideProps) {
         </div>
         <div className="cards">
           {c.cards.map((card, i) => (
-            <div key={card.title} className="rule-card st" {...st(2, step)} style={{ '--d': `${i * 120}ms` } as CSSProperties}>
+            <div key={card.title} className="rule-card st" data-cue={`card${i}`} {...st(2, step)} style={{ '--d': `${i * 120}ms` } as CSSProperties}>
               <p className="card-title">{card.title}</p>
               <p className="card-body">{card.body}</p>
             </div>

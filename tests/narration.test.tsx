@@ -3,6 +3,7 @@ import { createHash } from 'node:crypto'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { describe, expect, it } from 'vitest'
+import { stripCues } from '../src/content/cues'
 import { en } from '../src/content/en'
 import manifest from '../src/content/narration.json'
 import { vi as viCopy } from '../src/content/vi'
@@ -26,7 +27,7 @@ describe('spec 261117 narration content', () => {
   it('has one line per step in both languages, with no placeholders or the founder handle (R3, R8)', () => {
     for (const copy of Object.values(COPY))
       SLIDES.forEach((s) => {
-        const lines = copy[s.copy].narration
+        const lines = copy[s.copy].narration.map(stripCues)
         expect(lines, s.id).toHaveLength(s.steps)
         for (const line of lines) {
           expect(line.trim().length).toBeGreaterThan(0)
@@ -45,7 +46,7 @@ describe('spec 261117 narration content', () => {
           ids.push(id)
           const entry = (manifest.lines as Record<string, { sha256: string; seconds: number }>)[id]
           expect(entry, `${id}: run npm run narrate`).toBeDefined()
-          const sha = createHash('sha256').update(`${manifest.provider}\n${voice}\n${text}`).digest('hex')
+          const sha = createHash('sha256').update(`${manifest.provider}\n${voice}\n${stripCues(text)}`).digest('hex')
           expect(entry.sha256, `${id} is stale: run npm run narrate`).toBe(sha)
           expect(entry.seconds).toBeGreaterThan(0)
           expect(existsSync(join(root, 'public/media/narration', `${id}.mp3`)), id).toBe(true)
@@ -96,13 +97,13 @@ describe('spec 261117 controls', () => {
     expect(container.querySelector('main')?.hasAttribute('data-script')).toBe(true)
     const lines = panel.querySelectorAll('.script-line')
     expect(lines).toHaveLength(SLIDES.reduce((t, s) => t + s.steps, 0))
-    expect(panel.querySelector('[aria-current="step"]')?.textContent).toBe(en.title.narration[0])
+    expect(panel.querySelector('[aria-current="step"]')?.textContent).toBe(stripCues(en.title.narration[0]))
 
-    fireEvent.click(within(panel).getByText(en.market.narration[1]))
+    fireEvent.click(within(panel).getByText(stripCues(en.market.narration[1])))
     const main = container.querySelector('main') as HTMLElement
     expect(main.dataset.slide).toBe('4')
     expect(main.dataset.step).toBe('1')
-    expect(panel.querySelector('[aria-current="step"]')?.textContent).toBe(en.market.narration[1])
+    expect(panel.querySelector('[aria-current="step"]')?.textContent).toBe(stripCues(en.market.narration[1]))
 
     fireEvent.keyDown(panel, { key: 'Escape' })
     expect(document.getElementById('deck-script')).toBeNull()
@@ -113,7 +114,7 @@ describe('spec 261117 controls', () => {
     render(<Deck />)
     const panel = document.getElementById('deck-script') as HTMLElement
     expect(panel).not.toBeNull()
-    expect(panel.querySelector('[aria-current="step"]')?.textContent).toBe(en.problem.narration[0])
+    expect(panel.querySelector('[aria-current="step"]')?.textContent).toBe(stripCues(en.problem.narration[0]))
   })
 
   it('the stage fits beside the sidebar, or above the bottom sheet on narrow screens (R19, R24)', () => {

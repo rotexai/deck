@@ -1,10 +1,11 @@
-import { useCallback, useEffect, useState, useSyncExternalStore } from 'react'
+import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react'
 import { useContent, useLang } from '../content'
 import { SLIDES } from '../slides'
 import { LangSwitch } from './Lang'
 import { fit, W, H } from './fit'
 import { useReducedMotion } from './motion'
 import { useCoach } from './coach'
+import { useCueFx } from './cueFx'
 import { CoachMark, PlayButton, ScriptPanel, ScriptToggle } from './Narration'
 import { Narrator, NarratorContext } from './narrator'
 import { indexFromHash, KEYS_NEXT, KEYS_PREV, next, pad2, prev, type Pos } from './nav'
@@ -43,8 +44,11 @@ interface FrameProps {
 function Frame({ def, n, total, step, active, still, print, enter, state }: FrameProps) {
   const C = def.Component
   const copy = useContent()
+  const ref = useRef<HTMLElement>(null)
+  useCueFx(ref, def, n - 1, step, active && !print)
   return (
     <section
+      ref={ref}
       className={`slide ${def.theme} sl-${def.id}`}
       data-state={state}
       data-id={def.id}

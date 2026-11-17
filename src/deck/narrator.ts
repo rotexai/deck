@@ -45,6 +45,8 @@ export class Narrator {
   /** The line loaded into the audio element; '' when none, so the next play starts the current line afresh. */
   private loaded = ''
   private timer = 0
+  private readonly tickers = new Set<() => void>()
+  private frame = 0
 
   constructor(opts: NarratorOptions) {
     this.opts = opts
@@ -56,6 +58,21 @@ export class Narrator {
   }
 
   getState = (): NarratorState => this.state
+
+  /** Narration cues: called every frame while a line plays, and on every state change. */
+  subscribeTime = (cb: () => void) => {
+    this.tickers.add(cb)
+    return () => void this.tickers.delete(cb)
+  }
+
+  /** Where the voice is: the line on air (language and position) and seconds into it. Null when nothing is narrating
+   *  (never played, stopped, ended, or the demo video has the floor), so slides show their plain step state. */
+  cueTime(): { lang: Lang; pos: Pos; t: number } | null {
+    const { status, phase } = this.state
+    if ((status !== 'playing' && status !== 'paused') || phase === 'video') return null
+    if (!this.audio || this.loaded !== this.key()) return null
+    return { lang: this.lang, pos: this.pos, t: this.audio.currentTime || 0 }
+  }
 
   /** The deck reports every move and language change here (R12, R14). */
   sync(pos: Pos, lang: Lang) {
@@ -107,6 +124,8 @@ export class Narrator {
   dispose() {
     this.clearTimer()
     this.audio?.pause()
+    if (this.frame && typeof cancelAnimationFrame === 'function') cancelAnimationFrame(this.frame)
+    this.frame = 0
   }
 
   private key() {
@@ -118,6 +137,20 @@ export class Narrator {
     if (s.status === this.state.status && s.phase === this.state.phase && s.played === this.state.played) return
     this.state = s
     for (const cb of this.listeners) cb()
+    this.tick()
+  }
+
+  /** Feeds cue listeners every animation frame while playing, once otherwise. */
+  private tick() {
+    for (const cb of this.tickers) cb()
+    if (this.state.status !== 'playing' || this.frame || typeof requestAnimationFrame !== 'function') return
+    const loop = () => {
+      this.frame = 0
+      if (this.state.status !== 'playing') return
+      for (const cb of this.tickers) cb()
+      this.frame = requestAnimationFrame(loop)
+    }
+    this.frame = requestAnimationFrame(loop)
   }
 
   private ensureAudio(): HTMLAudioElement {
@@ -147,6 +180,7 @@ export class Narrator {
     this.loaded = this.key()
     this.set({ phase: 'line' })
     this.play(a)
+    this.tick()
     this.preloadNext()
   }
 

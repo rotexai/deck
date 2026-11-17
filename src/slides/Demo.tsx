@@ -47,7 +47,7 @@ export function DemoSlide({ active, still, print }: SlideProps) {
       </div>
       <div className="demo-row">
         <figure className="film">
-          <figcaption className="sim-label">{c.label}</figcaption>
+          <figcaption className="sim-label" data-cue="label">{c.label}</figcaption>
           {print ? (
             <img src={c.video.poster} alt="" />
           ) : (

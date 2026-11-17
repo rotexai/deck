@@ -16,6 +16,7 @@ import { homedir, tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { en } from '../src/content/en.ts'
 import { vi } from '../src/content/vi.ts'
+import { estimateWords, stripCues } from '../src/content/cues.ts'
 
 const root = new URL('..', import.meta.url).pathname
 const outDir = join(root, 'public/media/narration')
@@ -45,15 +46,25 @@ const PROVIDERS = {
       const keyFile = join(homedir(), '.config/roxctl/elevenlabs-api-key')
       const key = process.env.ELEVENLABS_API_KEY ?? (existsSync(keyFile) ? readFileSync(keyFile, 'utf8').trim() : '')
       if (!key) throw new Error(`no ElevenLabs key: set ELEVENLABS_API_KEY or write ${keyFile}`)
-      const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}?output_format=mp3_44100_128`, {
+      const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voice}/with-timestamps?output_format=mp3_44100_128`, {
         method: 'POST',
         headers: { 'xi-api-key': key, 'Content-Type': 'application/json' },
         body: JSON.stringify({ text, model_id: process.env.NARRATE_MODEL ?? 'eleven_v4' }),
       })
       if (!res.ok) throw new Error(`elevenlabs speech: HTTP ${res.status} ${(await res.text()).slice(0, 200)}`)
+      const { audio_base64: audio, alignment } = await res.json()
       const mp3 = `${file}.mp3`
-      writeFileSync(mp3, Buffer.from(await res.arrayBuffer()))
-      execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', mp3, '-af', `atempo=${process.env.NARRATE_TEMPO ?? '1.1'}`, file])
+      writeFileSync(mp3, Buffer.from(audio, 'base64'))
+      const tempo = Number(process.env.NARRATE_TEMPO ?? '1.1')
+      execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', mp3, '-af', `atempo=${tempo}`, file])
+      // Word start times for the narration cues: the first character of each word, scaled by the tempo.
+      const chars = alignment?.characters ?? []
+      const starts = alignment?.character_start_times_seconds ?? []
+      const words = []
+      chars.forEach((ch, i) => {
+        if (/\S/.test(ch) && (i === 0 || /\s/.test(chars[i - 1]))) words.push(Math.round((starts[i] / tempo) * 100) / 100)
+      })
+      return { words }
     },
   },
   openai: {
@@ -86,7 +97,8 @@ function lines(copy) {
   Object.keys(copy)
     .filter((k) => k !== 'deck')
     .forEach((key, i) =>
-      copy[key].narration.forEach((text, step) => out.push({ name: `${String(i + 1).padStart(2, '0')}-${step + 1}`, text })),
+      // Cue markers drive the slide, never the voice (src/content/cues.ts).
+      copy[key].narration.forEach((text, step) => out.push({ name: `${String(i + 1).padStart(2, '0')}-${step + 1}`, text: stripCues(text) })),
     )
   return out
 }
@@ -114,7 +126,8 @@ try {
       const sha256 = hashLine(providerName, voice, text)
       wanted.add(`${name}.mp3`)
       const prev = old.lines[id]
-      if (!flag('force') && prev?.sha256 === sha256 && existsSync(file)) {
+      const needsWords = providerName === 'elevenlabs' && !prev?.words
+      if (!flag('force') && !needsWords && prev?.sha256 === sha256 && existsSync(file)) {
         manifest.lines[id] = prev
         total += prev.seconds
         continue
@@ -122,11 +135,18 @@ try {
       stale.push(id)
       if (flag('check')) continue
       const raw = join(tmp, 'line.wav')
-      await provider.render(text, voice, raw)
+      const rendered = await provider.render(text, voice, raw)
       // Mono, about 64 kbps (R5): small enough to preload one line ahead on a phone.
       execFileSync('ffmpeg', ['-v', 'error', '-y', '-i', raw, '-ac', '1', '-ar', '24000', '-b:a', '64k', file])
       const s = Math.round(seconds(file) * 100) / 100
-      manifest.lines[id] = { sha256, seconds: s }
+      // Word times (narration cues): from the provider when it gives them, else spread over the line by characters.
+      const plainWords = text.trim().split(/\s+/).length
+      let words = rendered?.words
+      if (!words || words.length !== plainWords) {
+        if (words) console.warn(`narrate: ${id} has ${words.length} timed words for ${plainWords} written; estimating`)
+        words = estimateWords(text, s)
+      }
+      manifest.lines[id] = { sha256, seconds: s, words }
       total += s
       console.log(`rendered ${id} (${s}s)`)
     }

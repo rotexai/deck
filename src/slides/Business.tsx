@@ -13,7 +13,7 @@ export function BusinessSlide() {
       </div>
       <div className="biz-grid">
         {c.cards.map((card, i) => (
-          <div key={card.title} className="glass biz-card slide-card" style={{ '--d': `${300 + i * 160}ms` } as CSSProperties}>
+          <div key={card.title} className="glass biz-card slide-card" data-cue={`card${i}`} style={{ '--d': `${300 + i * 160}ms` } as CSSProperties}>
             <p className="panel-label">{card.title}</p>
             <p className="biz-value">
               <Txt text={card.value} block />

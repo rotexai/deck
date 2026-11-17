@@ -1,3 +1,4 @@
+import { stripCues } from '../src/content/cues'
 import { render } from '@testing-library/react'
 import { describe, expect, it } from 'vitest'
 import { en } from '../src/content/en'
@@ -6,7 +7,8 @@ import { PrintDeck } from '../src/deck/Deck'
 import { SLIDES } from '../src/slides'
 
 function strings(v: unknown): string[] {
-  if (typeof v === 'string') return [v]
+  // Narration cue markers ([[focus:x]]) are not slots; they never render.
+  if (typeof v === 'string') return [stripCues(v)]
   if (Array.isArray(v)) return v.flatMap(strings)
   if (v && typeof v === 'object') return Object.values(v).flatMap(strings)
   return []

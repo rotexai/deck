@@ -15,8 +15,8 @@ export function ShopSlide({ step }: SlideProps) {
       <div className="shop-left">
         <p className="kicker">{c.kicker}</p>
         <Headline className="h2 x84" text={c.headline} />
-        <blockquote className="quote">{c.quote}</blockquote>
-        <p className="shop-clock" aria-live="off">
+        <blockquote className="quote" data-cue="quote">{c.quote}</blockquote>
+        <p className="shop-clock" aria-live="off" data-cue="clock">
           <span>{c.clockLabel}</span> <time>{c.clock[step]}</time>
         </p>
       </div>
@@ -28,17 +28,17 @@ export function ShopSlide({ step }: SlideProps) {
           </div>
           <div className="rc-cut" />
           {r.lines.map(([what, how], i) => (
-            <div key={what} className="rc-row st" {...st(i, step)}>
+            <div key={what} className="rc-row st" data-cue={`rc${i}`} {...st(i, step)}>
               <span>{what}</span>
               <span>{how}</span>
             </div>
           ))}
           <div className="rc-cut st" {...st(last, step)} />
-          <div className="rc-row rc-strong st" {...st(last, step)}>
+          <div className="rc-row rc-strong st" data-cue="total" {...st(last, step)}>
             <span>{r.total[0]}</span>
             <span className="warn">{r.total[1]}</span>
           </div>
-          <p className="rc-note st" {...st(last, step)}>
+          <p className="rc-note st" data-cue="note" {...st(last, step)}>
             {r.note}
           </p>
         </div>

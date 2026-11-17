@@ -271,3 +271,11 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 @media print {
   html, body { background: var(--paper); }
 }
+
+/* Narration cues (cueFx.ts): while the voice plays, the element it names lights up. Dimming and waiting run on
+   `filter` through the Web Animations API; marks are a ring, or a fill on the axis labels and the caption. */
+[data-cue-mark] { box-shadow: 0 0 0 3px var(--s-accent); border-radius: 12px; }
+.ax[data-cue-mark] { color: var(--s-bg); background: var(--s-accent); box-shadow: none; border-radius: 6px; }
+.caption[data-cue-mark] { box-shadow: none; border-radius: 0; background: linear-gradient(transparent 62%, color-mix(in srgb, var(--s-accent) 30%, transparent) 62%); }
+.script-btn[data-cue-mark] { color: var(--s-fg); border-color: var(--s-accent); border-radius: 999px; }
+

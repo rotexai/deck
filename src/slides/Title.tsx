@@ -25,7 +25,7 @@ export function TitleSlide() {
   const c = useContent().title
   return (
     <div className="sl-pad title">
-      <div className="brand">
+      <div className="brand" data-cue="brand">
         <Mark />
         <span className="wordmark">
           {c.wordmark.a}
@@ -34,12 +34,14 @@ export function TitleSlide() {
       </div>
       <div className="title-main">
         <p className="kicker rise">{c.kicker}</p>
-        <Headline as="h1" className="h1" text={c.headline} start={150} />
-        <p className="lead rise" style={{ '--d': '550ms' } as CSSProperties}>
+        <div data-cue="headline">
+          <Headline as="h1" className="h1" text={c.headline} start={150} />
+        </div>
+        <p className="lead rise" data-cue="lead" style={{ '--d': '550ms' } as CSSProperties}>
           {c.body}
         </p>
       </div>
-      <aside className="title-scan">
+      <aside className="title-scan" data-cue="scan">
         <p className="kicker rise" style={{ '--d': '750ms' } as CSSProperties}>
           {c.scan.label}
         </p>

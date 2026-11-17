@@ -44,7 +44,7 @@ export const en = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'This is RotexAI: software that fits each shop. A shop owner describes how the shop works, in plain words. RotexAI builds the app, and changes it when the shop changes. You are hearing an AI voice; the Script button at the top shows every word.',
+      'This is [[focus:brand+headline]]RotexAI: software that fits each shop. [[focus:lead]]A shop owner describes how the shop works, in plain words. RotexAI builds the app, and changes it when the shop changes. [[focus:none]]You are hearing an AI voice; the [[mark:script]]Script button at the top shows every word.',
     ],
     source: 'investor.rotexai.com',
   },
@@ -71,12 +71,12 @@ export const en = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Small shops run on phones, chat and memory. Take a bakery with two shops. Every evening, staff in the first shop count the stock on a phone.',
-      'The second shop does the same, on another phone.',
-      'When flour runs low, someone asks for a restock in a chat.',
-      'Butter runs low: another message.',
-      'Then the manager approves, from memory.',
-      'Five steps, and none of them linked. It happens by hand every night, and nothing carries over to tomorrow.',
+      '[[focus:quote]]Small shops run on phones, chat and memory. Take a bakery with two shops. Every evening, staff in the first shop [[focus:rc0+clock]]count the stock on a phone.',
+      '[[focus:rc1+clock]]The second shop does the same, on another phone.',
+      'When flour runs low, [[focus:rc2+clock]]someone asks for a restock in a chat.',
+      'Butter runs low: [[focus:rc3+clock]]another message.',
+      'Then [[focus:rc4+clock]]the manager approves, from memory.',
+      '[[focus:total]]Five steps, and none of them linked. It happens by hand every night, [[focus:note]]and nothing carries over to tomorrow.',
     ],
     source: 'Scenario from the RotexAI product walkthrough (illustrative)',
   },
@@ -103,9 +103,9 @@ export const en = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Packaged ERP does not solve this, because it fails small firms on fit. In one study, nine SMEs rated what mattered most in their ERP project.',
-      'Organisational fit ranks ninth across 320 research papers, but third for the SMEs themselves.',
-      'Misfit is a key cause of ERP failure: the system’s built-in processes do not match how the firm works. And vendor costs, customisation included, rank highest of ten cost factors.',
+      'Packaged ERP does not solve this, because it fails small firms on fit. In one study, [[focus:chart]]nine SMEs rated what mattered most in their ERP project.',
+      '[[focus:fit+chip]]Organisational fit ranks ninth across 320 research papers, but third for the SMEs themselves.',
+      '[[focus:card0]]Misfit is a key cause of ERP failure: the system’s built-in processes do not match how the firm works. And [[focus:card1]]vendor costs, customisation included, rank highest of ten cost factors.',
     ],
     source:
       'Leyh (2014), FedCSIS, Table 2 and Fig. 1 · Jegorova & Grabis (2025), CSIMQ · Haddara & Elragal (2013), IJISPM, Table 2',
@@ -124,9 +124,9 @@ export const en = {
     gridLabel: 'Dot grid of 817 dots, one per 1,000 SMEs: {figure} highlighted.',
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Vietnam had about 817,000 SMEs in 2024. 93.6 percent of them are micro or small.',
-      'By our estimate, 718,000 already use accounting software: 88 percent of surveyed firms.',
-      'But only about 122,000 run an ERP for the rest of the business. The other 596,000 are our opening. And beside them sit 5.17 million individual business establishments, not counted here.',
+      'Vietnam had about [[focus:figure+dots]]817,000 SMEs in 2024. [[mark:caption]]93.6 percent of them are micro or small.',
+      'By our estimate, [[focus:figure+dots]]718,000 already use accounting software: [[mark:caption]]88 percent of surveyed firms.',
+      'But only about [[focus:figure+dots]]122,000 run an ERP for the rest of the business. The other 596,000 are our opening. And beside them sit [[focus:aside]]5.17 million individual business establishments, not counted here.',
     ],
     source:
       'One dot = 1,000 SMEs · Statistics Office, White Book 2025 & Statistical Summary 2025 · MOIT E-commerce White Book 2022 (2021 survey: 88% and 15% of surveyed firms) · 718k and 122k are our estimates',
@@ -155,9 +155,9 @@ export const en = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'So: describe the shop, and get its app. In this simplified scene from the live portal, the owner says it in plain words: two bakery shops, a stock count every evening, a restock request when flour or butter runs low, and the manager approves.',
-      'RotexAI turns that into a workflow: the evening stock count, a check against the threshold, a restock request, and the manager’s approval.',
-      'Every change is a new version the owner approves. Here, version three adds butter to the restock list.',
+      'So: describe the shop, and get its app. In this simplified scene from the live portal, [[focus:says]]the owner says it in plain words: two bakery shops, a stock count every evening, a restock request when flour or butter runs low, and the manager approves.',
+      '[[focus:builds]]RotexAI turns that into a workflow: the [[focus:node0]]evening stock count, [[focus:node1]]a check against the threshold, [[focus:node2]]a restock request, and [[focus:node3]]the manager’s approval.',
+      '[[focus:approves]]Every change is a new version the owner approves. Here, [[mark:version]]version three adds butter to the restock list.',
     ],
     source: 'Product scene, simplified from the live RotexAI portal',
   },
@@ -180,7 +180,7 @@ export const en = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Here is the walkthrough, from plain words to a working app. It is a simulation: the portal rebuilt from its source code, not a screen recording.',
+      'Here is the walkthrough, from plain words to a working app. [[mark:label]]It is a simulation: the portal rebuilt from its source code, not a screen recording.',
     ],
     source: 'RotexAI product walkthrough, simulated portal (also on investor.rotexai.com)',
   },
@@ -200,7 +200,7 @@ export const en = {
     mcp: { title: 'Coding agents over MCP', body: 'Agents build and publish apps through the same workflows, with the owner’s confirmation.' },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Under the hood, every action is a workflow you can inspect: who does it, what it checks, and what it records. Each shop gets one app with many screens, and every read and write goes through a workflow, never straight to the database. Coding agents can build and publish apps over MCP, through the same workflows, with the owner’s confirmation.',
+      'Under the hood, [[focus:workflows]]every action is a workflow you can inspect: who does it, what it checks, and what it records. [[focus:app]]Each shop gets one app with many screens, and [[focus:workflows+app]]every read and write goes through a workflow, never straight to the database. [[focus:mcp]]Coding agents can build and publish apps over MCP, through the same workflows, with the owner’s confirmation.',
     ],
     source: 'Architecture of the live RotexAI platform',
   },
@@ -233,9 +233,9 @@ export const en = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Why now? Three things changed in 2026. First, the technology: AI can now build software around each shop, which removes the misfit that sinks packaged ERP.',
-      'Second, on 16 March 2026, the state set a goal of at least 300,000 SMEs on digital solutions by 2030, with vouchers and “use first, pay later”.',
-      'Third, from 1 January 2026, lump-sum tax ended for households. Those above one billion dong in revenue must issue e-invoices, which pushes them onto digital books.',
+      'Why now? Three things changed in 2026. First, [[focus:card0]]the technology: AI can now build software around each shop, which removes the misfit that sinks packaged ERP.',
+      'Second, [[focus:card1]][[mark:chip1]]on 16 March 2026, the state set a goal of at least 300,000 SMEs on digital solutions by 2030, with vouchers and “use first, pay later”.',
+      'Third, [[focus:card2]][[mark:chip2]]from 1 January 2026, lump-sum tax ended for households. Those above one billion dong in revenue must issue e-invoices, which pushes them onto digital books.',
     ],
     source: 'Sources on each card',
   },
@@ -252,8 +252,8 @@ export const en = {
     us: { quadrant: 'tr', name: 'RotexAI', note: 'Fits the shop, and the owner changes it by describing the change' },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'We looked at 38 competitors. Packaged ERP and sales apps, like MISA AMIS, Odoo and KiotViet, fit Vietnamese tax and e-invoices, but every change is a partner project. AI app builders and low-code tools, like Lovable and Airtable, let the owner change the app, but they know nothing of Vietnamese business. And most often, the shop still runs on Excel, Zalo and paper.',
-      'Of 26 products we could test, none fits Vietnam and lets the owner make the change alone. That corner is ours: RotexAI fits the shop, and the owner changes it by describing the change.',
+      'We looked at 38 competitors. [[focus:tl]]Packaged ERP and sales apps, like MISA AMIS, Odoo and KiotViet, [[mark:up]]fit Vietnamese tax and e-invoices, but every change is [[mark:left]]a partner project. [[focus:br]]AI app builders and low-code tools, like Lovable and Airtable, [[mark:right]]let the owner change the app, but they know nothing of [[mark:down]]Vietnamese business.',
+      'Of 26 products we could test, [[mark:up+right]]none fits Vietnam and lets the owner make the change alone. [[land:us]][[focus:us]]That corner is ours: RotexAI fits the shop, and the owner changes it by describing the change.',
     ],
     // No source line on this slide (owner 2026-11-17); the research is wiki Pillar 7.
     source: '',
@@ -269,7 +269,7 @@ export const en = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'The model is simple: each shop pays for its own app. Plans are billed in the portal, and a plan starts once its first invoice is paid. Owners can also start from a published project in the marketplace and adapt it.',
+      'The model is simple: [[focus:card0]]each shop pays for its own app. [[focus:card1]]Plans are billed in the portal, and a plan starts once its first invoice is paid. [[focus:card2]]Owners can also start from a published project in the marketplace and adapt it.',
     ],
     source: 'Prices and terms are placeholders until they are set',
   },
@@ -290,7 +290,7 @@ export const en = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'RotexAI is live in production today. In the portal, an owner describes the shop, checks the plan, then builds and runs the app. Team access, with read, write, run and delete rights per object, shipped on 19 October 2026. The marketplace followed on 26 October. And since 14 November, a coding agent can publish an app over MCP, with the owner confirming.',
+      'RotexAI is live in production today. [[focus:m0]]In the portal, an owner describes the shop, checks the plan, then builds and runs the app. [[focus:m1]]Team access, with read, write, run and delete rights per object, shipped on 19 October 2026. [[focus:m2]]The marketplace followed on 26 October. [[focus:m3]]And since 14 November, a coding agent can publish an app over MCP, with the owner confirming.',
     ],
     source: 'RotexAI production release log · usage numbers to come',
   },
@@ -307,7 +307,7 @@ export const en = {
     link: { href: 'https://qvanle.rotexai.com', text: 'qvanle.rotexai.com' },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'RotexAI is built by its founder. It began as a way to take the manual work out of family and friends’ businesses: first understand their work, then let software do it. The founder is an engineer who builds RotexAI end to end, and uses every tool on real work before any customer does.',
+      '[[focus:portrait+person]]RotexAI is built by its founder. [[focus:origin]]It began as a way to take the manual work out of family and friends’ businesses: first understand their work, then let software do it. [[focus:background]]The founder is an engineer who builds RotexAI end to end, and uses every tool on real work before any customer does.',
     ],
     source: 'qvanle.rotexai.com',
   },
@@ -333,10 +333,10 @@ export const en = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'We are raising 150 million dong: six months to prove it. 60 million is founder runway, at 10 million a month.',
-      '30 million goes to the first customers.',
-      '30 million covers infrastructure, at 5 million a month.',
-      'And 30 million is held in reserve. To talk, write to contact@rotexai.com, or visit investor.rotexai.com. Thank you for listening.',
+      'We are raising [[focus:total]]150 million dong: six months to prove it. [[focus:f0]]60 million is founder runway, at 10 million a month.',
+      '[[focus:f1]]30 million goes to the first customers.',
+      '[[focus:f2]]30 million covers infrastructure, at 5 million a month.',
+      '[[focus:f3]]And 30 million is held in reserve. [[focus:none]]To talk, write to contact@rotexai.com, or visit investor.rotexai.com. Thank you for listening.',
     ],
     source: 'contact@rotexai.com · investor.rotexai.com',
   },

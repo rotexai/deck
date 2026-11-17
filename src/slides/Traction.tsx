@@ -15,7 +15,7 @@ export function TractionSlide() {
         <span className="tl-line" aria-hidden="true" />
         <ol className="tl-list">
           {c.milestones.map((m, i) => (
-            <li key={m.title} className="tl-item" style={{ '--d': `${500 + i * 380}ms` } as CSSProperties}>
+            <li key={m.title} className="tl-item" data-cue={`m${i}`} style={{ '--d': `${500 + i * 380}ms` } as CSSProperties}>
               <span className="tl-date">
                 <Txt text={m.date} />
               </span>
@@ -26,7 +26,7 @@ export function TractionSlide() {
           ))}
         </ol>
       </div>
-      <div className="metrics">
+      <div className="metrics" data-cue="metrics">
         {c.metrics.map((m) => (
           <div key={m.label} className="metric">
             <span className="panel-label">{m.label}</span>

@@ -19,7 +19,7 @@ export function SolutionSlide({ step, still, enter }: SlideProps) {
         <Headline className="h2 x88" text={c.headline} start={switching ? 600 : 0} />
       </div>
       <div className="sol-grid">
-        <div className="glass panel">
+        <div className="glass panel" data-cue="says">
           <p className="panel-label">{c.says.label}</p>
           <p className="prompt" aria-label={c.says.text}>
             <span aria-hidden="true">{typed}</span>
@@ -31,7 +31,7 @@ export function SolutionSlide({ step, still, enter }: SlideProps) {
         <div className="sol-arrow st" aria-hidden="true" {...st(1, step)}>
           →
         </div>
-        <div className="glass panel">
+        <div className="glass panel" data-cue="builds">
           <p className="panel-label">{c.builds.label}</p>
           <div className="flow">
             {c.builds.nodes.map((n, i) => (
@@ -43,6 +43,7 @@ export function SolutionSlide({ step, still, enter }: SlideProps) {
                 )}
                 <div
                   className={'wf-node st' + (i === c.builds.nodes.length - 1 ? ' human' : '')}
+                  data-cue={`node${i}`}
                   {...st(1, step)}
                   style={{ '--d': `${i * 200}ms` } as CSSProperties}
                 >
@@ -55,9 +56,9 @@ export function SolutionSlide({ step, still, enter }: SlideProps) {
         <div className="sol-arrow st" aria-hidden="true" {...st(2, step)}>
           →
         </div>
-        <div className="glass panel">
+        <div className="glass panel" data-cue="approves">
           <p className="panel-label">{c.approves.label}</p>
-          <p className="version st" {...st(2, step)}>
+          <p className="version st" data-cue="version" {...st(2, step)}>
             {c.approves.version}
           </p>
           <div className="diff st" {...st(2, step)} style={{ '--d': '120ms' } as CSSProperties}>

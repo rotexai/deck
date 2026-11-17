@@ -1,5 +1,6 @@
 import { useEffect, useRef, type MouseEvent } from 'react'
 import { useContent, useLang } from '../content'
+import { stripCues } from '../content/cues'
 import narration from '../content/narration.json'
 import { useReducedMotion } from './motion'
 import { pad2, type Pos } from './nav'
@@ -60,6 +61,7 @@ export function ScriptToggle({ open, onToggle, coach }: { open: boolean; onToggl
     <button
       type="button"
       className="deck-btn script-btn"
+      data-cue="script"
       aria-expanded={open}
       aria-controls="deck-script"
       aria-label={open ? c.hideScript : c.showScript}
@@ -136,7 +138,7 @@ export function ScriptPanel({ slides, pos, theme, onClose }: { slides: SlideDef[
                   aria-current={i === pos.index && k === pos.step ? 'step' : undefined}
                   onClick={() => n?.jump({ index: i, step: k })}
                 >
-                  {line}
+                  {stripCues(line)}
                 </button>
               ))}
             </li>

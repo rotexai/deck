@@ -32,15 +32,17 @@ export function MarketSlide({ step, still }: SlideProps) {
       </div>
       <div className="market-row">
         <div className="market-left">
-          <p className={`figure tone-${s.tone}`} data-figure={s.figure}>
+          <p className={`figure tone-${s.tone}`} data-figure={s.figure} data-cue="figure">
             {fmt(figure)}
           </p>
-          <p key={step} className="caption rise">
+          <p key={step} className="caption rise" data-cue="caption">
             {s.caption}
           </p>
-          <p className="aside">{c.aside}</p>
+          <p className="aside" data-cue="aside">
+            {c.aside}
+          </p>
         </div>
-        <div className="dots" role="img" aria-label={c.gridLabel.replace('{figure}', fmt(s.figure))}>
+        <div className="dots" data-cue="dots" role="img" aria-label={c.gridLabel.replace('{figure}', fmt(s.figure))}>
           {Array.from({ length: total }, (_, i) => (
             <span
               key={i}

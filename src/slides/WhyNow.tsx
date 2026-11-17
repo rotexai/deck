@@ -14,8 +14,8 @@ export function WhyNowSlide({ step }: SlideProps) {
       </div>
       <div className="why-grid">
         {c.cards.map((card, i) => (
-          <div key={card.title} className="glass why-card st" {...st(i, step)}>
-            <span className={`chip tone-${card.tone}`}>{card.chip}</span>
+          <div key={card.title} className="glass why-card st" data-cue={`card${i}`} {...st(i, step)}>
+            <span className={`chip tone-${card.tone}`} data-cue={`chip${i}`}>{card.chip}</span>
             <p className="card-title">{card.title}</p>
             <p className="card-body">{card.body}</p>
             <div className="grow" />

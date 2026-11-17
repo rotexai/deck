@@ -37,7 +37,7 @@ export const vi: Content = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Đây là RotexAI: phần mềm vừa vặn với từng cửa hàng. Chủ cửa hàng mô tả cách cửa hàng vận hành, bằng lời thường. RotexAI xây dựng ứng dụng, và thay đổi ứng dụng khi cửa hàng thay đổi. Bạn đang nghe giọng AI. Nút Kịch bản ở đầu trang hiển thị toàn bộ lời thuyết minh.',
+      'Đây là [[focus:brand+headline]]RotexAI: phần mềm vừa vặn với từng cửa hàng. [[focus:lead]]Chủ cửa hàng mô tả cách cửa hàng vận hành, bằng lời thường. RotexAI xây dựng ứng dụng, và thay đổi ứng dụng khi cửa hàng thay đổi. [[focus:none]]Bạn đang nghe giọng AI. [[mark:script]]Nút Kịch bản ở đầu trang hiển thị toàn bộ lời thuyết minh.',
     ],
     source: 'investor.rotexai.com',
   },
@@ -63,12 +63,12 @@ export const vi: Content = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Các cửa hàng nhỏ vận hành bằng điện thoại, nhắn tin và trí nhớ. Hãy lấy một tiệm bánh có hai cửa hàng làm ví dụ. Mỗi tối, nhân viên ở cửa hàng thứ nhất kiểm kê hàng tồn trên điện thoại.',
-      'Cửa hàng thứ hai làm y như vậy, trên một chiếc điện thoại khác.',
-      'Khi bột mì sắp hết, có người nhắn tin yêu cầu nhập hàng.',
-      'Bơ sắp hết: thêm một tin nhắn nữa.',
-      'Rồi quản lý phê duyệt, dựa trên trí nhớ.',
-      'Năm bước, và không bước nào liên kết với nhau. Việc này được làm thủ công mỗi đêm, và không có gì được giữ lại cho ngày hôm sau.',
+      '[[focus:quote]]Các cửa hàng nhỏ vận hành bằng điện thoại, nhắn tin và trí nhớ. Hãy lấy một tiệm bánh có hai cửa hàng làm ví dụ. Mỗi tối, nhân viên ở cửa hàng thứ nhất [[focus:rc0+clock]]kiểm kê hàng tồn trên điện thoại.',
+      '[[focus:rc1+clock]]Cửa hàng thứ hai làm y như vậy, trên một chiếc điện thoại khác.',
+      'Khi bột mì sắp hết, [[focus:rc2+clock]]có người nhắn tin yêu cầu nhập hàng.',
+      'Bơ sắp hết: [[focus:rc3+clock]]thêm một tin nhắn nữa.',
+      'Rồi [[focus:rc4+clock]]quản lý phê duyệt, dựa trên trí nhớ.',
+      '[[focus:total]]Năm bước, và không bước nào liên kết với nhau. Việc này được làm thủ công mỗi đêm, [[focus:note]]và không có gì được giữ lại cho ngày hôm sau.',
     ],
     source: 'Kịch bản từ bản hướng dẫn sản phẩm RotexAI (minh họa)',
   },
@@ -101,9 +101,9 @@ export const vi: Content = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'ERP đóng gói không giải quyết được việc này, vì nó không vừa vặn với doanh nghiệp nhỏ. Trong một nghiên cứu, chín doanh nghiệp nhỏ và vừa đã đánh giá điều gì quan trọng nhất trong dự án ERP của họ.',
-      'Mức độ phù hợp với tổ chức xếp thứ chín trong 320 bài nghiên cứu, nhưng xếp thứ ba đối với chính các doanh nghiệp nhỏ và vừa.',
-      'Sự không phù hợp là một nguyên nhân chính khiến ERP thất bại: các quy trình tích hợp sẵn trong hệ thống không khớp với cách doanh nghiệp vận hành. Và chi phí nhà cung cấp, kể cả phần tùy biến, xếp cao nhất trong mười yếu tố chi phí.',
+      'ERP đóng gói không giải quyết được việc này, vì nó không vừa vặn với doanh nghiệp nhỏ. Trong một nghiên cứu, [[focus:chart]]chín doanh nghiệp nhỏ và vừa đã đánh giá điều gì quan trọng nhất trong dự án ERP của họ.',
+      '[[focus:fit+chip]]Mức độ phù hợp với tổ chức xếp thứ chín trong 320 bài nghiên cứu, nhưng xếp thứ ba đối với chính các doanh nghiệp nhỏ và vừa.',
+      '[[focus:card0]]Sự không phù hợp là một nguyên nhân chính khiến ERP thất bại: các quy trình tích hợp sẵn trong hệ thống không khớp với cách doanh nghiệp vận hành. Và [[focus:card1]]chi phí nhà cung cấp, kể cả phần tùy biến, xếp cao nhất trong mười yếu tố chi phí.',
     ],
     source:
       'Leyh (2014), FedCSIS, Bảng 2 và Hình 1 · Jegorova & Grabis (2025), CSIMQ · Haddara & Elragal (2013), IJISPM, Bảng 2',
@@ -126,9 +126,9 @@ export const vi: Content = {
     gridLabel: 'Lưới 817 chấm, mỗi chấm là 1.000 DNNVV: {figure} được tô sáng.',
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Việt Nam có khoảng 817.000 doanh nghiệp nhỏ và vừa vào năm 2024. Trong số đó, 93,6 phần trăm là doanh nghiệp siêu nhỏ hoặc nhỏ.',
-      'Theo ước tính của chúng tôi, 718.000 doanh nghiệp đã dùng phần mềm kế toán. Con số này tương ứng 88 phần trăm các doanh nghiệp được khảo sát.',
-      'Nhưng chỉ khoảng 122.000 doanh nghiệp dùng ERP cho phần còn lại của hoạt động kinh doanh. Còn lại 596.000 doanh nghiệp, đó là điểm khởi đầu của chúng tôi. Bên cạnh đó là 5,17 triệu cơ sở kinh doanh cá thể, không được tính trong các con số này.',
+      'Việt Nam có khoảng [[focus:figure+dots]]817.000 doanh nghiệp nhỏ và vừa vào năm 2024. Trong số đó, [[mark:caption]]93,6 phần trăm là doanh nghiệp siêu nhỏ hoặc nhỏ.',
+      'Theo ước tính của chúng tôi, [[focus:figure+dots]]718.000 doanh nghiệp đã dùng phần mềm kế toán. Con số này tương ứng [[mark:caption]]88 phần trăm các doanh nghiệp được khảo sát.',
+      'Nhưng chỉ khoảng [[focus:figure+dots]]122.000 doanh nghiệp dùng ERP cho phần còn lại của hoạt động kinh doanh. Còn lại 596.000 doanh nghiệp, đó là điểm khởi đầu của chúng tôi. Bên cạnh đó là [[focus:aside]]5,17 triệu cơ sở kinh doanh cá thể, không được tính trong các con số này.',
     ],
     source:
       'Một chấm = 1.000 DNNVV · Cục Thống kê, Sách trắng 2025 & Tóm tắt thống kê 2025 · Sách trắng Thương mại điện tử 2022 (Bộ Công Thương; khảo sát 2021: 88% và 15% doanh nghiệp được khảo sát) · 718 nghìn và 122 nghìn là ước tính của chúng tôi',
@@ -157,9 +157,9 @@ export const vi: Content = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Vậy thì: hãy mô tả cửa hàng, và nhận ngay ứng dụng dành cho cửa hàng đó. Trong cảnh minh họa đơn giản này, lấy từ cổng thông tin đang hoạt động, chủ cửa hàng nói bằng lời thường: hai cửa hàng bánh, kiểm kê hàng mỗi tối, yêu cầu nhập hàng khi bột mì hoặc bơ sắp hết, và quản lý phê duyệt.',
-      'RotexAI biến điều đó thành một quy trình: kiểm kê hàng buổi tối, kiểm tra theo ngưỡng tồn kho, yêu cầu nhập hàng, và việc quản lý phê duyệt.',
-      'Mỗi thay đổi là một phiên bản mới mà chủ cửa hàng phê duyệt. Ở đây, phiên bản thứ ba thêm bơ vào danh sách nhập hàng.',
+      'Vậy thì: hãy mô tả cửa hàng, và nhận ngay ứng dụng dành cho cửa hàng đó. Trong cảnh minh họa đơn giản này, lấy từ cổng thông tin đang hoạt động, [[focus:says]]chủ cửa hàng nói bằng lời thường: hai cửa hàng bánh, kiểm kê hàng mỗi tối, yêu cầu nhập hàng khi bột mì hoặc bơ sắp hết, và quản lý phê duyệt.',
+      '[[focus:builds]]RotexAI biến điều đó thành một quy trình: [[focus:node0]]kiểm kê hàng buổi tối, [[focus:node1]]kiểm tra theo ngưỡng tồn kho, [[focus:node2]]yêu cầu nhập hàng, và [[focus:node3]]việc quản lý phê duyệt.',
+      '[[focus:approves]]Mỗi thay đổi là một phiên bản mới mà chủ cửa hàng phê duyệt. Ở đây, [[mark:version]]phiên bản thứ ba thêm bơ vào danh sách nhập hàng.',
     ],
     source: 'Cảnh sản phẩm, đơn giản hóa từ cổng RotexAI đang chạy',
   },
@@ -187,7 +187,7 @@ export const vi: Content = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Dưới đây là phần trình diễn, từ lời thường đến một ứng dụng hoạt động thực tế. Đây là một bản mô phỏng: cổng thông tin được dựng lại từ mã nguồn, chứ không phải một đoạn ghi màn hình.',
+      'Dưới đây là phần trình diễn, từ lời thường đến một ứng dụng hoạt động thực tế. [[mark:label]]Đây là một bản mô phỏng: cổng thông tin được dựng lại từ mã nguồn, chứ không phải một đoạn ghi màn hình.',
     ],
     source: 'Bản hướng dẫn sản phẩm RotexAI, cổng mô phỏng (cũng có tại investor.rotexai.com)',
   },
@@ -210,7 +210,7 @@ export const vi: Content = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Ở bên trong, mỗi hành động là một quy trình mà bạn có thể kiểm tra: ai thực hiện, kiểm tra điều gì và ghi lại điều gì. Mỗi cửa hàng có một ứng dụng với nhiều màn hình. Mọi thao tác đọc và ghi đều đi qua quy trình, không bao giờ truy cập trực tiếp vào cơ sở dữ liệu. Các tác nhân lập trình AI có thể xây dựng và xuất bản ứng dụng qua MCP, cũng thông qua các quy trình đó, khi chủ cửa hàng xác nhận.',
+      'Ở bên trong, [[focus:workflows]]mỗi hành động là một quy trình mà bạn có thể kiểm tra: ai thực hiện, kiểm tra điều gì và ghi lại điều gì. [[focus:app]]Mỗi cửa hàng có một ứng dụng với nhiều màn hình. [[focus:workflows+app]]Mọi thao tác đọc và ghi đều đi qua quy trình, không bao giờ truy cập trực tiếp vào cơ sở dữ liệu. [[focus:mcp]]Các tác nhân lập trình AI có thể xây dựng và xuất bản ứng dụng qua MCP, cũng thông qua các quy trình đó, khi chủ cửa hàng xác nhận.',
     ],
     source: 'Kiến trúc nền tảng RotexAI đang chạy',
   },
@@ -243,9 +243,9 @@ export const vi: Content = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Vì sao lại là bây giờ? Ba điều đã thay đổi trong năm 2026. Thứ nhất là công nghệ: AI giờ đây có thể xây dựng phần mềm xoay quanh từng cửa hàng, và điều đó loại bỏ sự không phù hợp khiến ERP đóng gói thất bại.',
-      'Thứ hai, ngày 16 tháng 3 năm 2026, Nhà nước đặt mục tiêu có ít nhất 300.000 doanh nghiệp nhỏ và vừa ứng dụng giải pháp số vào năm 2030, kèm theo voucher và cơ chế “dùng trước, trả sau”.',
-      'Thứ ba, từ ngày 1 tháng 1 năm 2026, chế độ thuế khoán đã chấm dứt đối với hộ kinh doanh. Những hộ có doanh thu trên một tỷ đồng phải xuất hóa đơn điện tử. Điều này buộc họ chuyển sang sổ sách số.',
+      'Vì sao lại là bây giờ? Ba điều đã thay đổi trong năm 2026. Thứ nhất [[focus:card0]]là công nghệ: AI giờ đây có thể xây dựng phần mềm xoay quanh từng cửa hàng, và điều đó loại bỏ sự không phù hợp khiến ERP đóng gói thất bại.',
+      'Thứ hai, [[focus:card1]][[mark:chip1]]ngày 16 tháng 3 năm 2026, Nhà nước đặt mục tiêu có ít nhất 300.000 doanh nghiệp nhỏ và vừa ứng dụng giải pháp số vào năm 2030, kèm theo voucher và cơ chế “dùng trước, trả sau”.',
+      'Thứ ba, [[focus:card2]][[mark:chip2]]từ ngày 1 tháng 1 năm 2026, chế độ thuế khoán đã chấm dứt đối với hộ kinh doanh. Những hộ có doanh thu trên một tỷ đồng phải xuất hóa đơn điện tử. Điều này buộc họ chuyển sang sổ sách số.',
     ],
     source: 'Nguồn ghi trên từng thẻ',
   },
@@ -280,8 +280,8 @@ export const vi: Content = {
     },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Chúng tôi đã xem xét 38 đối thủ cạnh tranh. ERP đóng gói và ứng dụng bán hàng, như MISA AMIS, Odoo và KiotViet, khớp với thuế và hóa đơn điện tử Việt Nam, nhưng mỗi thay đổi đều là một dự án với đối tác. Các công cụ tạo app bằng AI và low-code, như Lovable và Airtable, cho phép chủ cửa hàng thay đổi ứng dụng, nhưng chúng không biết gì về kinh doanh Việt Nam. Và phổ biến nhất, cửa hàng vẫn chạy bằng Excel, Zalo và giấy tờ.',
-      'Trong 26 sản phẩm chúng tôi có thể thử, không sản phẩm nào vừa với Việt Nam và cho phép chủ cửa hàng tự thay đổi. Vị trí đó thuộc về chúng tôi: RotexAI vừa với cửa hàng, và chủ cửa hàng thay đổi bằng cách mô tả điều cần đổi.',
+      'Chúng tôi đã xem xét 38 đối thủ cạnh tranh. [[focus:tl]]ERP đóng gói và ứng dụng bán hàng, như MISA AMIS, Odoo và KiotViet, [[mark:up]]khớp với thuế và hóa đơn điện tử Việt Nam, nhưng mỗi thay đổi đều là [[mark:left]]một dự án với đối tác. [[focus:br]]Các công cụ tạo app bằng AI và low-code, như Lovable và Airtable, [[mark:right]]cho phép chủ cửa hàng thay đổi ứng dụng, nhưng chúng không biết gì về [[mark:down]]kinh doanh Việt Nam.',
+      'Trong 26 sản phẩm chúng tôi có thể thử, [[mark:up+right]]không sản phẩm nào vừa với Việt Nam và cho phép chủ cửa hàng tự thay đổi. [[land:us]][[focus:us]]Vị trí đó thuộc về chúng tôi: RotexAI vừa với cửa hàng, và chủ cửa hàng thay đổi bằng cách mô tả điều cần đổi.',
     ],
     // No source line on this slide (owner 2026-11-17); the research is wiki Pillar 7.
     source: '',
@@ -305,7 +305,7 @@ export const vi: Content = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Mô hình này đơn giản: mỗi cửa hàng trả tiền cho ứng dụng của riêng mình. Các gói dịch vụ được thu phí trên cổng thông tin, và một gói chỉ bắt đầu sau khi hóa đơn đầu tiên được thanh toán. Chủ cửa hàng cũng có thể bắt đầu từ một dự án đã xuất bản trên chợ dự án, rồi điều chỉnh cho hợp với cửa hàng của mình.',
+      'Mô hình này đơn giản: [[focus:card0]]mỗi cửa hàng trả tiền cho ứng dụng của riêng mình. [[focus:card1]]Các gói dịch vụ được thu phí trên cổng thông tin, và một gói chỉ bắt đầu sau khi hóa đơn đầu tiên được thanh toán. [[focus:card2]]Chủ cửa hàng cũng có thể bắt đầu từ một dự án đã xuất bản trên chợ dự án, rồi điều chỉnh cho hợp với cửa hàng của mình.',
     ],
     source: 'Giá và điều khoản là chỗ trống cho đến khi được xác định',
   },
@@ -326,7 +326,7 @@ export const vi: Content = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'RotexAI đã được đưa vào vận hành thực tế ngay hôm nay. Trên cổng thông tin, chủ cửa hàng mô tả cửa hàng, kiểm tra gói dịch vụ, rồi xây dựng và chạy ứng dụng. Quyền truy cập theo nhóm, với quyền đọc, ghi, chạy và xóa trên từng đối tượng, ra mắt ngày 19 tháng 10 năm 2026. Chợ dự án ra mắt sau đó, vào ngày 26 tháng 10. Và từ ngày 14 tháng 11, một tác nhân lập trình AI có thể xuất bản ứng dụng qua MCP, với sự xác nhận của chủ cửa hàng.',
+      'RotexAI đã được đưa vào vận hành thực tế ngay hôm nay. [[focus:m0]]Trên cổng thông tin, chủ cửa hàng mô tả cửa hàng, kiểm tra gói dịch vụ, rồi xây dựng và chạy ứng dụng. [[focus:m1]]Quyền truy cập theo nhóm, với quyền đọc, ghi, chạy và xóa trên từng đối tượng, ra mắt ngày 19 tháng 10 năm 2026. [[focus:m2]]Chợ dự án ra mắt sau đó, vào ngày 26 tháng 10. [[focus:m3]]Và từ ngày 14 tháng 11, một tác nhân lập trình AI có thể xuất bản ứng dụng qua MCP, với sự xác nhận của chủ cửa hàng.',
     ],
     source: 'Nhật ký phát hành RotexAI · số liệu sử dụng sẽ được cập nhật sau',
   },
@@ -344,7 +344,7 @@ export const vi: Content = {
     link: { href: 'https://qvanle.rotexai.com', text: 'qvanle.rotexai.com' },
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'RotexAI do chính người sáng lập xây dựng. Ban đầu, RotexAI là một cách để gỡ bỏ công việc thủ công khỏi việc kinh doanh của gia đình và bạn bè: trước hết hiểu công việc của họ, rồi để phần mềm đảm nhận. Người sáng lập là một kỹ sư, tự xây dựng RotexAI từ đầu đến cuối, và dùng mọi công cụ vào công việc thực tế trước khi khách hàng nào dùng đến.',
+      '[[focus:portrait+person]]RotexAI do chính người sáng lập xây dựng. [[focus:origin]]Ban đầu, RotexAI là một cách để gỡ bỏ công việc thủ công khỏi việc kinh doanh của gia đình và bạn bè: trước hết hiểu công việc của họ, rồi để phần mềm đảm nhận. [[focus:background]]Người sáng lập là một kỹ sư, tự xây dựng RotexAI từ đầu đến cuối, và dùng mọi công cụ vào công việc thực tế trước khi khách hàng nào dùng đến.',
     ],
     source: 'qvanle.rotexai.com',
   },
@@ -370,10 +370,10 @@ export const vi: Content = {
     ],
     // Narration (spec 261117): one line per step, read by the AI voice and shown in the script sidebar.
     narration: [
-      'Chúng tôi đang gọi vốn 150 triệu đồng. Đó là sáu tháng để chứng minh điều này. Trong đó, 60 triệu đồng là quỹ duy trì cho người sáng lập, với mức 10 triệu đồng mỗi tháng.',
-      '30 triệu đồng dành cho những khách hàng đầu tiên.',
-      '30 triệu đồng chi cho hạ tầng, với mức 5 triệu đồng mỗi tháng.',
-      'Và 30 triệu đồng được giữ lại làm dự phòng. Để trao đổi thêm, quý vị có thể gửi email đến contact@rotexai.com, hoặc truy cập investor.rotexai.com. Xin cảm ơn quý vị đã lắng nghe.',
+      'Chúng tôi đang gọi vốn [[focus:total]]150 triệu đồng. Đó là sáu tháng để chứng minh điều này. Trong đó, [[focus:f0]]60 triệu đồng là quỹ duy trì cho người sáng lập, với mức 10 triệu đồng mỗi tháng.',
+      '[[focus:f1]]30 triệu đồng dành cho những khách hàng đầu tiên.',
+      '[[focus:f2]]30 triệu đồng chi cho hạ tầng, với mức 5 triệu đồng mỗi tháng.',
+      '[[focus:f3]]Và 30 triệu đồng được giữ lại làm dự phòng. [[focus:none]]Để trao đổi thêm, quý vị có thể gửi email đến contact@rotexai.com, hoặc truy cập investor.rotexai.com. Xin cảm ơn quý vị đã lắng nghe.',
     ],
     source: 'contact@rotexai.com · investor.rotexai.com',
   },

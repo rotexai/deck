@@ -16,12 +16,12 @@ export function CompetitionSlide({ step }: SlideProps) {
       <div className="matrix">
         <span className="axis-v" aria-hidden="true" />
         <span className="axis-h" aria-hidden="true" />
-        <span className="ax up">↑ {c.axes.up}</span>
-        <span className="ax down">{c.axes.down}</span>
-        <span className="ax left">{c.axes.left}</span>
-        <span className="ax right">{c.axes.right} →</span>
+        <span className="ax up" data-cue="up">↑ {c.axes.up}</span>
+        <span className="ax down" data-cue="down">{c.axes.down}</span>
+        <span className="ax left" data-cue="left">{c.axes.left}</span>
+        <span className="ax right" data-cue="right">{c.axes.right} →</span>
         {c.others.map((o, i) => (
-          <div key={o.name} className={`glass q-card drop q-${o.quadrant}`} style={{ '--d': `${200 + i * 180}ms` } as CSSProperties}>
+          <div key={o.name} className={`glass q-card drop q-${o.quadrant}`} data-cue={o.quadrant} style={{ '--d': `${200 + i * 180}ms` } as CSSProperties}>
             <p className="card-title">{o.name}</p>
             <p className="card-body">{o.note}</p>
             <p className="q-names">
@@ -29,7 +29,7 @@ export function CompetitionSlide({ step }: SlideProps) {
             </p>
           </div>
         ))}
-        <div className={`glass q-card us land st q-${c.us.quadrant}`} {...st(1, step)}>
+        <div className={`glass q-card us land st q-${c.us.quadrant}`} data-cue="us" {...st(1, step)}>
           <p className="card-title accent">{c.us.name}</p>
           <p className="card-body">{c.us.note}</p>
         </div>
