@@ -183,7 +183,8 @@ export function Deck({ slides = SLIDES }: { slides?: SlideDef[] }) {
             enter={view.enter}
             state="in"
           />
-          <div className="deck-controls">
+          {coach && <div className="coach-dim" aria-hidden="true" />}
+          <div className="deck-controls" data-coach={coach || undefined}>
             <ScriptToggle open={script} onToggle={() => setScript((o) => !o)} coach={coach} />
             <span className="coach-anchor">
               <PlayButton wide={view.pos.index === 0} coach={coach} />

@@ -152,6 +152,16 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 
 /* First-visit coach mark (owner 2026-11-17): a pulse on Play and a callout under it that names Listen and Script. */
 .coach-anchor { position: relative; display: inline-flex; }
+/* The slide dims behind the tip so the eye goes to the controls; same z-index as the controls, which come later
+   in the DOM and stay lit. Any click on it dismisses the tip (coach.ts listens for pointer presses). */
+.coach-dim {
+  position: absolute; inset: 0; z-index: 4;
+  background: color-mix(in srgb, var(--ink) 68%, transparent);
+  animation: coach-dim-in 500ms var(--out-cubic) both;
+}
+@keyframes coach-dim-in { from { opacity: 0; } }
+/* The glass buttons would show the dim through them: give them the slide's own background while the tip is up. */
+.deck-controls[data-coach] .deck-btn:not([data-pill]), .deck-controls[data-coach] .lang-switch { background: var(--s-bg); }
 .coach {
   position: absolute; top: calc(100% + 22px); left: 50%; width: 400px; margin-left: -200px; z-index: 5;
   padding: 18px 22px; border-radius: 18px; pointer-events: none;
@@ -175,7 +185,7 @@ p, h1, h2, blockquote, figure, ol { margin: 0; }
 }
 .script-btn[data-coach] { border-color: var(--s-accent); color: var(--s-fg); }
 @media (prefers-reduced-motion: reduce) {
-  .coach { animation: none; }
+  .coach, .coach-dim { animation: none; }
   .play-btn[data-coach] { animation: none; box-shadow: 0 0 0 4px var(--s-accent); }
 }
 
